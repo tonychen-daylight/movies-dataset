@@ -14,8 +14,8 @@ st.write(
     """
 )
 
-data = requests.get("'https://jsonplaceholder.typicode.com/todos/1'").json()
-st.write(data)
+#data = requests.get("'https://jsonplaceholder.typicode.com/todos/1'").json()
+#st.write(data)
 
 # Load the data from a CSV. We're caching this so it doesn't reload every time the app
 # reruns (e.g. if the user interacts with the widgets).
