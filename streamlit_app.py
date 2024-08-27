@@ -1,6 +1,7 @@
 import altair as alt
 import pandas as pd
 import streamlit as st
+import requests
 
 # Show the page title and description.
 st.set_page_config(page_title="Movies dataset", page_icon="🎬")
@@ -13,6 +14,8 @@ st.write(
     """
 )
 
+data = requests.get("'https://jsonplaceholder.typicode.com/todos/1'").json()
+st.write(data)
 
 # Load the data from a CSV. We're caching this so it doesn't reload every time the app
 # reruns (e.g. if the user interacts with the widgets).
