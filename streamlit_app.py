@@ -2,6 +2,9 @@ import streamlit as st
 import pandas as pd
 import pulp
 
+# Sidebar for input
+st.sidebar.header('Trip History')
+
 # Sample dataset
 data = [
     {'Trip ID': 1, 'Start Date': '2023-11-01', 'End Date': '2023-11-02', 'Distance': 150, 'Duration': 5, 'Savings': 200},
