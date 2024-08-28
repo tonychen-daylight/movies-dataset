@@ -35,6 +35,14 @@ if 'selected_tab' not in st.session_state:
     st.session_state.selected_tab = None
 if 'scenario_exclusions' not in st.session_state:
     st.session_state.scenario_exclusions = {}  # Track exclusions per scenario
+    
+def getToken():
+    url = "https://test-api.dylt.com/oauth/client_credential/accesstoken?grant_type=client_credentials"
+    payload = "client_id=Dlcn9SvNNpk2JDGuAsujc2vCkhcSDGjZ&client_secret=ooQ2nWOSqT63AMcH"
+    headers = {"Content-Type": "application/x-www-form-urlencoded"}
+    response = requests.request("POST", url, headers=headers, data=payload)
+    print(f'Token: {response.json().get("access_token")}')
+    return response.json().get("access_token")
 
 def run_optimization(min_savings, max_distance, max_duration, excluded_trip_ids):
     filtered_data = [trip for trip in data if trip['Trip ID'] not in excluded_trip_ids]
