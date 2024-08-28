@@ -4,6 +4,7 @@ import pulp
 
 # Sidebar for input
 st.sidebar.header('Trip History')
+st.sidebar.form_submit_button(label="Pull Trip", help=None, on_click=None, args=None, kwargs=None, *, type="secondary", disabled=False, use_container_width=False)
 
 # Sample dataset
 data = [
