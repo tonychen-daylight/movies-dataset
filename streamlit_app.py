@@ -3,12 +3,17 @@ import pandas as pd
 import pulp
 import datetime
 
-# Sidebar for input
+# Trip History
 st.sidebar.header('Trip History')
 container = st.sidebar.container(border=True)
 container.date_input("Start Date", datetime.date(2024, 6, 1))
 container.date_input("End Date", datetime.datetime.now())
 container.button("Pull Strip", type="secondary")
+
+# Trip Matching
+st.sidebar.header('Trip Matching')
+container1 = st.sidebar.container(border=True)
+container1.button("Trip Matching", type="secondary")
 
 # Sample dataset
 data = [
