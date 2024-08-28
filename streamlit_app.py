@@ -7,7 +7,7 @@ import datetime
 st.sidebar.header('Trip History')
 container = st.sidebar.container(border=True)
 container.date_input("Start Date", datetime.date(2024, 6, 1))
-container.date_input("End Date", datetime.date(2024, 8, 6))
+container.date_input("End Date", datetime.datetime.now())
 
 # Sample dataset
 data = [
