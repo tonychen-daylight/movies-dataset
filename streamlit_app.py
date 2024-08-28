@@ -17,8 +17,8 @@ min_distance1 = container1.number_input('Min Distance (miles)', min_value=0, val
 max_distance1 = container1.number_input('Max Distance (miles)', min_value=0, value=58000, key='max_distance')
 #min_savings1 = container1.number_input('Min Savings($)', min_value=0, value=-100, key='min_savings')
 max_distance71 = container1.number_input('Max Distance7 (miles)', min_value=0, value=58000, key='max_distance7')
-max_idle_time1 = container1.number_input('Max Idle Time (days)', min_value=0, value=1.1, key='max_idle_time')
-max_durations = container1.number_input('Max Duration (days)', min_value=0, value=1.1, key='max_durations')
+max_idle_time1 = container1.number_input('Max Idle Time (days)', min_value=0, value=1, key='max_idle_time')
+max_durations = container1.number_input('Max Duration (days)', min_value=0, value=8, key='max_durations')
 container1.button("Trip Matching", type="secondary")
 
 # Sample dataset
