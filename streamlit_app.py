@@ -5,6 +5,7 @@ import datetime
 
 # Sidebar for input
 st.sidebar.header('Trip History')
+container = st.sidebar.container(border=True)
 st.sidebar.date_input("Start Date", datetime.date(2024, 8, 6))
 
 # Sample dataset
