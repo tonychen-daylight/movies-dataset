@@ -43,7 +43,17 @@ def getToken():
     response = requests.request("POST", url, headers=headers, data=payload)
     print(f'Token: {response.json().get("access_token")}')
     return response.json().get("access_token")
+    
+def getTripHstory(startDate, endDate):
+    url = "https://Boomi-Elast-JHFRIO4ZPHFF-53644198.us-west-1.elb.amazonaws.com:9093/ws/simple/getTripHistory"
+    payload = "<tripHistoryReq>\r\n <startDate>2024-06-01</startDate>\r\n <endDate>2024-06-10</endDate>\r\n</tripHistoryReq>"
+    headers = {
+      'Content-Type': 'application/xml'
+    }
 
+    response = requests.request("POST", url, headers=headers, data=payload)
+    return (response.text)
+    
 def run_optimization(min_savings, max_distance, max_duration, excluded_trip_ids):
     filtered_data = [trip for trip in data if trip['Trip ID'] not in excluded_trip_ids]
     filtered_data = [trip for trip in filtered_data if trip['Savings'] >= min_savings and trip['Distance'] <= max_distance and trip['Duration'] <= max_duration]
