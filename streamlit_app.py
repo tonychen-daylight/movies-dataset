@@ -108,8 +108,10 @@ if container.button("Pull Strip", type="secondary"):
     }
     response = requests.request("GET", url, headers=headers, data=payload)
     tripHistory = response.json().get("items")
-    st.dataframe(tripHistory)
-    
+    #st.dataframe(tripHistory)
+
+st.dataframe(tripHistory)
+
 # Sidebar for input
 st.sidebar.header('Filter Criteria')
 
