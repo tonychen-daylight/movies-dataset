@@ -101,6 +101,13 @@ def run_optimization(min_savings, max_distance, max_duration, excluded_trip_ids)
 if container.button("Pull Strip", type="secondary"):
     token =  getToken()
     st.write(token)
+    url = "https://dev-api.dylt.com/myDaylight/v1/shipments/tripHistory/06-01-2024"
+    payload = {}
+    headers = {
+       'Authorization': 'Bearer mOiTfCLdtRez7MLIrwKqYj7JuGLF'
+    }
+    response = requests.request("GET", url, headers=headers, data=payload)
+    st.write(response.text)
     
 # Sidebar for input
 st.sidebar.header('Filter Criteria')
