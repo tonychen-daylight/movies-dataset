@@ -9,7 +9,10 @@ container = st.sidebar.container(border=True)
 container.date_input("Start Date", datetime.date(2024, 6, 1))
 container.date_input("End Date", datetime.datetime.now())
 container.button("Pull Strip", type="secondary")
+if container.button('Pull Strip', key='pull_trip'):
+    st.write(getTripHstory('', ''))
 
+    
 # Trip Matching
 st.sidebar.header('Trip Matching')
 container1 = st.sidebar.container(border=True)
