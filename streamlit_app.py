@@ -10,8 +10,7 @@ container = st.sidebar.container(border=True)
 container.date_input("Start Date", datetime.date(2024, 6, 1))
 container.date_input("End Date", datetime.datetime.now())
 #container.button("Pull Strip", type="secondary")
-
-    
+  
 # Trip Matching
 st.sidebar.header('Trip Matching')
 container1 = st.sidebar.container(border=True)
@@ -98,16 +97,17 @@ def run_optimization(min_savings, max_distance, max_duration, excluded_trip_ids)
 
     return results_df, excluded_df, combined_df, pulp.LpStatus[model.status], pulp.value(model.objective)
 
+# Get Trip History
 if container.button("Pull Strip", type="secondary"):
     token =  getToken()
-    st.write(token)
+    #st.write(token)
     url = "https://dev-api.dylt.com/myDaylight/v1/shipments/tripHistory/06-01-2024"
     payload = {}
     headers = {
        'Authorization': 'Bearer ' + token
     }
     response = requests.request("GET", url, headers=headers, data=payload)
-    st.write(response.text)
+    st.write(response.json().get("items"))
     
 # Sidebar for input
 st.sidebar.header('Filter Criteria')
