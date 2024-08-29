@@ -99,7 +99,8 @@ def run_optimization(min_savings, max_distance, max_duration, excluded_trip_ids)
     return results_df, excluded_df, combined_df, pulp.LpStatus[model.status], pulp.value(model.objective)
 
 if container.button("Pull Strip", type="secondary"):
-    st.dataframe(data)
+    tripHistory = getTripHstory('', '')
+    st.dataframe(tripHistory)
     
 # Sidebar for input
 st.sidebar.header('Filter Criteria')
