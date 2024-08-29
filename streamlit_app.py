@@ -9,7 +9,7 @@ st.sidebar.header('Trip History')
 container = st.sidebar.container(border=True)
 container.date_input("Start Date", datetime.date(2024, 6, 1))
 container.date_input("End Date", datetime.datetime.now())
-container.button("Pull Strip", type="secondary" on)
+container.button("Pull Strip", type="secondary")
 
 tab1, tab2 = st.tabs(["📈 Chart", "🗃 Data"])
 
