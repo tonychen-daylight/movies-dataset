@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import pulp
 import datetime
+import requests
 
 # Trip History
 st.sidebar.header('Trip History')
