@@ -107,7 +107,7 @@ if container.button("Pull Strip", type="secondary"):
        'Authorization': 'Bearer ' + token
     }
     response = requests.request("GET", url, headers=headers, data=payload)
-    st.dateframe(response.json().get("items"))
+    st.dataframe(response.json().get("items"))
     
 # Sidebar for input
 st.sidebar.header('Filter Criteria')
