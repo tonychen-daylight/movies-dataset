@@ -10,10 +10,6 @@ container = st.sidebar.container(border=True)
 container.date_input("Start Date", datetime.date(2024, 6, 1))
 container.date_input("End Date", datetime.datetime.now())
 container.button("Pull Strip", type="secondary")
-
-tab1, tab2 = st.tabs(["📈 Chart", "🗃 Data"])
-
-
     
 # Trip Matching
 st.sidebar.header('Trip Matching')
@@ -33,6 +29,7 @@ data = [
     {'Trip ID': 3, 'Start Date': '2023-11-05', 'End Date': '2023-11-06', 'Distance': 180, 'Duration': 4, 'Savings': 250}
 ]
 
+st.dataframe(data)
 # Initialize session state    
 if 'tabs' not in st.session_state:
     st.session_state.tabs = []  # Store tab data as a list of dictionaries
