@@ -29,7 +29,7 @@ data = [
     {'Trip ID': 3, 'Start Date': '2023-11-05', 'End Date': '2023-11-06', 'Distance': 180, 'Duration': 4, 'Savings': 250}
 ]
 
-
+tripHistory = []
 
 # Initialize session state    
 if 'tabs' not in st.session_state:
@@ -107,7 +107,8 @@ if container.button("Pull Strip", type="secondary"):
        'Authorization': 'Bearer ' + token
     }
     response = requests.request("GET", url, headers=headers, data=payload)
-    st.dataframe(response.json().get("items"))
+    tripHistory = response.json().get("items")
+    st.dataframe(tripHistory)
     
 # Sidebar for input
 st.sidebar.header('Filter Criteria')
