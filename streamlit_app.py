@@ -9,7 +9,9 @@ st.sidebar.header('Trip History')
 container = st.sidebar.container(border=True)
 container.date_input("Start Date", datetime.date(2024, 6, 1))
 container.date_input("End Date", datetime.datetime.now())
-container.button("Pull Strip", type="secondary")
+container.button("Pull Strip", type="secondary" on)
+
+tab1, tab2 = st.tabs(["📈 Chart", "🗃 Data"])
 
 
     
@@ -96,9 +98,6 @@ def run_optimization(min_savings, max_distance, max_duration, excluded_trip_ids)
     combined_df = pd.concat([results_df, excluded_df.rename(columns=lambda x: f"Excluded_{x}")], axis=1)
 
     return results_df, excluded_df, combined_df, pulp.LpStatus[model.status], pulp.value(model.objective)
-
-if container.button('Pull Strip', key='pull_trip'):
-    st.write(getTripHstory('', ''))
     
 # Sidebar for input
 st.sidebar.header('Filter Criteria')
