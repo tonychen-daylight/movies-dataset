@@ -116,6 +116,7 @@ if container.button("Get Trip History", type="secondary"):
     response = requests.request("GET", url, headers=headers, data=payload)
     tripHistory = response.json().get("items")
     #st.dataframe(tripHistory)
+    st.session_state.last_updated = datetime.datetime.now()
 
 st.dataframe(tripHistory, width=1000, height=600)
 st.write("Last fetched:", datetime.datetime.now())
