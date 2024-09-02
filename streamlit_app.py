@@ -18,7 +18,7 @@ st.sidebar.header('Step 2: Find Matching Trips')
 container1 = st.sidebar.container(border=True)
 min_distance1 = container1.number_input('Min Distance (miles)', min_value=0, value=2000, key='min_distance1')
 max_distance1 = container1.number_input('Max Distance (miles)', min_value=0, value=58000, key='max_distance1')
-#min_savings1 = container1.number_input('Min Savings($)', min_value=0, value=-100, key='min_savings1')
+min_savings1 = container1.number_input('Min Savings($)', min_value=0, value=-100, key='min_savings1')
 max_distance71 = container1.number_input('Max Distance7 (miles)', min_value=0, value=58000, key='max_distance71')
 max_idle_time1 = container1.number_input('Max Idle Time (days)', min_value=0, value=1, key='max_idle_time1')
 max_durations = container1.number_input('Max Duration (days)', min_value=0, value=8, key='max_durations')
@@ -583,7 +583,7 @@ st.divider()
 if container1.button("Find Matching Trips", type="secondary"):
     st.write("match button is clicked")
     start_date = "10-01-2023"
-    matched_trips = trip_matching(minDistance1,maxDistance1,minSaving1,maxDistance71,maxidletime1,max_duration1,start_date)
+    matched_trips = trip_matching(min_Distance1,max_Distance1,min_Saving1,max_Distance71,max_idle_time1,max_durations,start_date)
     d = matched_trips.to_json(orient="records")
     st.write(d)
     
