@@ -120,6 +120,9 @@ st.dataframe(st.session_state.trip_history, width=1000, height=400)
 st.write("Last fetched:",  st.session_state.last_updated)
 st.divider()
 
+if container1.button("Trip Matching", type="secondary"):
+    st.write("match button is clicked")
+    
 # Sidebar for input
 st.sidebar.header('Filter Criteria')
 
