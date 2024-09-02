@@ -113,7 +113,7 @@ if container.button("Get Trip History", type="secondary"):
     #st.dataframe(tripHistory)
 
 st.dataframe(tripHistory, width=1000, height=600)
-st.write("Last fetched: datetime.datetime.now():")
+st.write("Last fetched:", datetime.datetime.now())
 st.divider()
 
 # Sidebar for input
