@@ -113,6 +113,7 @@ if container.button("Get Trip History", type="secondary"):
     #st.dataframe(tripHistory)
 
 st.dataframe(tripHistory)
+st.divider()
 
 # Sidebar for input
 st.sidebar.header('Filter Criteria')
