@@ -68,8 +68,8 @@ def data_cleanup():
     df_copy = st.session_state.trip_history
     st.write(df_copy)
     # Convert 'dispatch' and 'arrival' to datetime
-    df_copy["dispatch"] = pd.to_datetime(df_copy["dispatch"], errors="coerce")
-    df_copy["arrival"] = pd.to_datetime(df_copy["arrival"], errors="coerce")
+    #df_copy["dispatch"] = pd.to_datetime(df_copy["dispatch"], errors="coerce")
+    #df_copy["arrival"] = pd.to_datetime(df_copy["arrival"], errors="coerce")
 
     # Add 'WeekDay' column
     df_copy["WeekDay"] = df_copy["dispatch"].dt.day_name()
