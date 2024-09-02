@@ -582,6 +582,10 @@ st.divider()
 
 if container1.button("Find Matching Trips", type="secondary"):
     st.write("match button is clicked")
+    start_date = "10-01-2023"
+    matched_trips = trip_matching(minDistance1,maxDistance1,minSaving1,maxDistance71,maxidletime1,max_duration1,start_date)
+    d = matched_trips.to_json(orient="records")
+    st.write(d)
     
 # Sidebar for input
 st.sidebar.header('Filter Criteria')
