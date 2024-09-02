@@ -59,6 +59,20 @@ def getTripHstory(startDate, endDate):
 
     response = requests.request("POST", url, headers=headers, data=payload)
     return (response.text)
+
+def data_cleanup():
+    # Load the CSV file
+    scsv = FilePicker1.files[0].readContents()
+    f = StringIO(scsv)
+    df = pd.read_csv(f)
+    df_copy = df
+    # Convert 'dispatch' and 'arrival' to datetime
+    df_copy["dispatch"] = pd.to_datetime(df_copy["dispatch"], errors="coerce")
+    df_copy["arrival"] = pd.to_datetime(df_copy["arrival"], errors="coerce")
+
+    # Add 'WeekDay' column
+    df_copy["WeekDay"] = df_copy["dispatch"].dt.day_name()
+    return df_copy
     
 def run_optimization(min_savings, max_distance, max_duration, excluded_trip_ids):
     filtered_data = [trip for trip in data if trip['Trip ID'] not in excluded_trip_ids]
