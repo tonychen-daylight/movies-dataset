@@ -116,6 +116,409 @@ def deduct_costs(df_copy):
                 )
     ded_costs = ded_cost_list
     return ded_costs
+
+def trip_matching(
+    minDistance,
+    maxDistance,
+    minSaving,
+    maxDistance7,
+    maxidletime,
+    max_duration,
+    start_date,
+):
+    df_copy = data_cleanup()
+    df_copy["weeknumber"] = (
+        df_copy["dispatch"] - pd.to_datetime(start_date)
+    ).dt.days // 7
+
+    # Get unique origins and destinations
+    origins = df_copy["origin"].unique().astype(str)
+    destinations = df_copy["destination"].unique().astype(str)
+    terminals = np.unique(
+        np.concatenate((origins, destinations))
+    )  # Includes both origins and destinations
+    weeks = np.sort(df_copy["weeknumber"].unique())
+
+    ded_costs = deduct_costs(df_copy)
+
+    # Remove non-LTL-1way services
+    df_copy = df_copy[df_copy["equipment"] == "LTL- 1way"]
+    df_copy = df_copy.reset_index(drop=True)
+
+    # Initialize Matched_Trips DataFrame
+    Matched_Trips = pd.DataFrame(
+        columns=[
+            "WeekDay",
+            "WeekDayMatch",
+            "WeekDayMatch2",
+            "WeekNumber",
+            "WeekNumber_Match",
+            "WeekNumber_Match2",
+            "terminal1",
+            "terminal2",
+            "terminal3",
+            "TripNumber1",
+            "TripNumber2",
+            "TripNumber3",
+            "TotalDistance",
+            "TripSchedule",
+            "TotalOldCost",
+            "TotalNewCost",
+            "CostSaving",
+            "TravelTime",
+            "Dispatch1",
+            "Arrival1",
+            "Dispatch2",
+            "Arrival2",
+            "Dispatch3",
+            "Arrival3",
+            "TripSchedule1",
+            "TripSchedule2",
+            "TripSchedule3",
+            "Carrier1",
+            "Carrier2",
+            "Carrier3",
+        ]
+    )
+
+    row_nb = 1
+
+    for w in range(len(weeks) - 1):
+        week_now = weeks[w]
+        week_n2 = weeks[w + 1]
+        week_n3 = week_n2 + 1
+
+        for i in range(len(origins)):
+            origin_current = origins[i]
+
+            for j in range(len(destinations)):
+                destination_current = destinations[j]
+
+                origin_destination_index = df_copy[
+                    (df_copy["origin"] == origin_current)
+                    & (df_copy["destination"] == destination_current)
+                    & (df_copy["weeknumber"] == week_now)
+                ].index.tolist()
+
+                if (origin_current != destination_current) and (
+                    len(origin_destination_index) > 0
+                ):
+                    for g in range(len(origin_destination_index)):
+                        for h in range(len(terminals)):
+                            trip2_index = df_copy[
+                                (
+                                    (df_copy["origin"] == destination_current)
+                                    & (df_copy["destination"] == terminals[h])
+                                )
+                                & (
+                                    (df_copy["weeknumber"] == week_now)
+                                    | (df_copy["weeknumber"] == week_n2)
+                                    | (df_copy["weeknumber"] == week_n3)
+                                )
+                            ].index
+                            trip3_index = df_copy[
+                                (
+                                    (df_copy["origin"] == terminals[h])
+                                    & (df_copy["destination"] == origin_current)
+                                )
+                                & (
+                                    (df_copy["weeknumber"] == week_now)
+                                    | (df_copy["weeknumber"] == week_n2)
+                                    | (df_copy["weeknumber"] == week_n3)
+                                )
+                            ].index
+
+                            trip2_options = len(trip2_index)
+                            trip3_options = len(trip3_index)
+
+                            cand_row = 0
+                            if (
+                                len(trip2_index) > 0
+                                and len(trip3_index) > 0
+                                and terminals[h]
+                                not in [destination_current, origin_current]
+                            ):
+                                for t2 in range(trip2_options):
+                                    for t3 in range(trip3_options):
+                                        trip_nb1 = df_copy.loc[
+                                            origin_destination_index[g], "trip_number"
+                                        ]
+                                        trip_nb2 = df_copy.loc[
+                                            trip2_index[t2], "trip_number"
+                                        ]
+                                        trip_nb3 = df_copy.loc[
+                                            trip3_index[t3], "trip_number"
+                                        ]
+
+                                        row_1 = df_copy[
+                                            df_copy["trip_number"] == trip_nb1
+                                        ].index[0]
+                                        row_2 = df_copy[
+                                            df_copy["trip_number"] == trip_nb2
+                                        ].index[0]
+                                        row_3 = df_copy[
+                                            df_copy["trip_number"] == trip_nb3
+                                        ].index[0]
+
+                                        TotalDistance = (
+                                            df_copy.loc[
+                                                origin_destination_index[g], "distance"
+                                            ]
+                                            + df_copy.loc[trip2_index[t2], "distance"]
+                                            + df_copy.loc[trip3_index[t3], "distance"]
+                                        )
+                                        # TripSchedule = df_copy.loc[row_1, 'route_description']
+                                        TripSchedule = ""
+
+                                        # Get costs of round trips vs one-ways
+                                        cost_trip1 = ded_costs[
+                                            (ded_costs["origin"] == origin_current)
+                                            & (
+                                                ded_costs["destination"]
+                                                == destination_current
+                                            )
+                                        ]["DedCost"].values[0]
+                                        cost_trip2 = ded_costs[
+                                            (ded_costs["origin"] == destination_current)
+                                            & (ded_costs["destination"] == terminals[h])
+                                        ]["DedCost"].values[0]
+                                        cost_trip3 = ded_costs[
+                                            (ded_costs["origin"] == terminals[h])
+                                            & (
+                                                ded_costs["destination"]
+                                                == origin_current
+                                            )
+                                        ]["DedCost"].values[0]
+
+                                        total_cost_1way = (
+                                            df_copy.loc[
+                                                origin_destination_index[g], "distance"
+                                            ]
+                                            * df_copy.loc[g, "cpm"]
+                                            + df_copy.loc[trip3_index[t3], "distance"]
+                                            * df_copy.loc[trip3_index[t3], "cpm"]
+                                            + df_copy.loc[trip2_index[t2], "distance"]
+                                            * df_copy.loc[trip2_index[t2], "cpm"]
+                                        )
+                                        total_cost_loop = (
+                                            df_copy.loc[
+                                                origin_destination_index[g], "distance"
+                                            ]
+                                            * cost_trip1
+                                            + df_copy.loc[trip2_index[t2], "distance"]
+                                            * cost_trip2
+                                            + df_copy.loc[trip3_index[t3], "distance"]
+                                            * cost_trip3
+                                        )
+
+                                        tour_savings = total_cost_1way - total_cost_loop
+
+                                        if (
+                                            tour_savings > minSaving
+                                            and TotalDistance < maxDistance7
+                                        ):
+                                            trip1_arrival = df_copy.loc[
+                                                row_1, "arrival"
+                                            ]
+                                            trip2_dispatch = df_copy.loc[
+                                                row_2, "dispatch"
+                                            ]
+                                            trip2_arrival = df_copy.loc[
+                                                row_2, "arrival"
+                                            ]
+                                            trip3_dispatch = df_copy.loc[
+                                                row_3, "dispatch"
+                                            ]
+
+                                            gap1 = (
+                                                trip2_dispatch - trip1_arrival
+                                            ).days + (
+                                                trip2_dispatch - trip1_arrival
+                                            ).seconds / 86400
+                                            gap2 = (
+                                                trip3_dispatch - trip2_arrival
+                                            ).days + (
+                                                trip3_dispatch - trip2_arrival
+                                            ).seconds / 86400
+
+                                            travel_days = (
+                                                df_copy.loc[row_3, "arrival"]
+                                                - df_copy.loc[row_1, "dispatch"]
+                                            ).seconds / 86400 + (
+                                                df_copy.loc[row_3, "arrival"]
+                                                - df_copy.loc[row_1, "dispatch"]
+                                            ).days
+                                            if travel_days > 7:
+                                                distance_limit = maxDistance7
+                                            else:
+                                                distance_limit = maxDistance
+
+                                            if (
+                                                gap1 >= 0
+                                                and gap1 <= maxidletime
+                                                and gap2 >= 0
+                                                and gap2 <= maxidletime
+                                            ):
+                                                if (
+                                                    TotalDistance >= minDistance
+                                                    and TotalDistance <= distance_limit
+                                                    and travel_days <= max_duration
+                                                ):
+                                                    # original_ser_hub = df_copy.loc[row_1, 'equipment']
+                                                    # original_ser_prime = df_copy.loc[row_3, 'equipment']
+                                                    # original_ser_2 = df_copy.loc[row_2, 'equipment']
+
+                                                    WeekNumber_1 = df_copy.loc[
+                                                        row_1, "weeknumber"
+                                                    ]
+                                                    WeekNumber_2 = df_copy.loc[
+                                                        row_2, "weeknumber"
+                                                    ]
+                                                    WeekNumber_3 = df_copy.loc[
+                                                        row_3, "weeknumber"
+                                                    ]
+
+                                                    weekday_1 = df_copy.loc[
+                                                        row_1, "WeekDay"
+                                                    ]
+                                                    weekday_2 = df_copy.loc[
+                                                        row_2, "WeekDay"
+                                                    ]
+                                                    weekday_3 = df_copy.loc[
+                                                        row_3, "WeekDay"
+                                                    ]
+
+                                                    # TripSchedule_1 = df_copy.loc[row_1, 'route_description']
+                                                    # TripSchedule_2 = df_copy.loc[row_2, 'route_description']
+                                                    # TripSchedule_3 = df_copy.loc[row_3, 'route_description']
+
+                                                    TripSchedule_1 = ""
+                                                    TripSchedule_2 = ""
+                                                    TripSchedule_3 = ""
+
+                                                    Carrier_1 = df_copy.loc[
+                                                        row_1, "carrier"
+                                                    ]
+                                                    Carrier_2 = df_copy.loc[
+                                                        row_2, "carrier"
+                                                    ]
+                                                    Carrier_3 = df_copy.loc[
+                                                        row_3, "carrier"
+                                                    ]
+
+                                                    # Add Linehaul day and Linehaul day of week here
+
+                                                    terminal3 = terminals[h]
+
+                                                    # Dates
+                                                    dispatch1 = df_copy.loc[
+                                                        row_1, "dispatch"
+                                                    ].strftime("%m/%d/%Y %H:%M")
+                                                    arrival1 = df_copy.loc[
+                                                        row_3, "arrival"
+                                                    ].strftime("%m/%d/%Y %H:%M")
+
+                                                    dispatch2 = trip2_dispatch.strftime(
+                                                        "%m/%d/%Y %H:%M"
+                                                    )
+                                                    arrival2 = trip1_arrival.strftime(
+                                                        "%m/%d/%Y %H:%M"
+                                                    )
+
+                                                    dispatch3 = trip3_dispatch.strftime(
+                                                        "%m/%d/%Y %H:%M"
+                                                    )
+                                                    arrival3 = trip2_arrival.strftime(
+                                                        "%m/%d/%Y %H:%M"
+                                                    )
+
+                                                    Matched_Trips.loc[row_nb, :] = [
+                                                        weekday_1,
+                                                        weekday_2,
+                                                        weekday_3,
+                                                        WeekNumber_1,
+                                                        WeekNumber_2,
+                                                        WeekNumber_3,
+                                                        origin_current,
+                                                        destination_current,
+                                                        terminal3,
+                                                        trip_nb1,
+                                                        trip_nb2,
+                                                        trip_nb3,
+                                                        TotalDistance,
+                                                        TripSchedule,
+                                                        total_cost_1way,
+                                                        total_cost_loop,
+                                                        tour_savings,
+                                                        travel_days,
+                                                        dispatch1,
+                                                        arrival2,
+                                                        dispatch2,
+                                                        arrival3,
+                                                        dispatch3,
+                                                        arrival1,
+                                                        TripSchedule_1,
+                                                        TripSchedule_2,
+                                                        TripSchedule_3,
+                                                        Carrier_1,
+                                                        Carrier_2,
+                                                        Carrier_3,
+                                                    ]
+
+                                                    row_nb += 1
+
+    # Set Linehaul day and waiting time
+    Matched_Trips["dispatch1_LHday"] = pd.to_datetime(
+        Matched_Trips["Dispatch1"]
+    ) + pd.Timedelta(hours=17)
+    Matched_Trips["dispatch2_LHday"] = pd.to_datetime(
+        Matched_Trips["Dispatch2"]
+    ) + pd.Timedelta(hours=17)
+    Matched_Trips["dispatch3_LHday"] = pd.to_datetime(
+        Matched_Trips["Dispatch3"]
+    ) + pd.Timedelta(hours=17)
+    Matched_Trips["dispatch1_LHdow"] = (
+        pd.to_datetime(Matched_Trips["Dispatch1"]) + pd.Timedelta(hours=17)
+    ).dt.day_name()
+    Matched_Trips["dispatch2_LHdow"] = (
+        pd.to_datetime(Matched_Trips["Dispatch2"]) + pd.Timedelta(hours=17)
+    ).dt.day_name()
+    Matched_Trips["dispatch3_LHdow"] = (
+        pd.to_datetime(Matched_Trips["Dispatch3"]) + pd.Timedelta(hours=17)
+    ).dt.day_name()
+    Matched_Trips["Trip_1_wait_hours"] = (
+        pd.to_datetime(Matched_Trips["Dispatch2"])
+        - pd.to_datetime(Matched_Trips["Arrival1"])
+    ) / pd.Timedelta(hours=1)
+    Matched_Trips["Trip_2_wait_hours"] = (
+        pd.to_datetime(Matched_Trips["Dispatch3"])
+        - pd.to_datetime(Matched_Trips["Arrival2"])
+    ) / pd.Timedelta(hours=1)
+    Matched_Trips["Trip_3_wait_hours"] = (
+        pd.to_datetime(Matched_Trips["Dispatch1"])
+        + pd.Timedelta(days=7)
+        - pd.to_datetime(Matched_Trips["Arrival3"])
+    ) / pd.Timedelta(hours=1)
+    Matched_Trips["WeekNumber_Adj"] = (
+        (Matched_Trips["dispatch1_LHday"] - pd.to_datetime(start_date)).dt.days // 7
+    ) + 1
+    Matched_Trips["Loop_Name"] = (
+        Matched_Trips["terminal1"]
+        + "-"
+        + Matched_Trips["terminal2"]
+        + "-"
+        + Matched_Trips["terminal3"]
+        + "-"
+        + Matched_Trips["dispatch1_LHdow"]
+        + "-"
+        + Matched_Trips["dispatch2_LHdow"]
+        + "-"
+        + Matched_Trips["dispatch3_LHdow"]
+    )
+
+    # Write Matched_Trips to CSV
+    # Matched_Trips.to_csv("matched_trips.csv", index=True)
+    return Matched_Trips
     
 def run_optimization(min_savings, max_distance, max_duration, excluded_trip_ids):
     filtered_data = [trip for trip in data if trip['Trip ID'] not in excluded_trip_ids]
