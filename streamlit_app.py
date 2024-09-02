@@ -98,7 +98,7 @@ def run_optimization(min_savings, max_distance, max_duration, excluded_trip_ids)
     return results_df, excluded_df, combined_df, pulp.LpStatus[model.status], pulp.value(model.objective)
 
 # Get Trip History
-st.header("Trip Optimization Dashboard")
+st.header(":blue[Trip Optimization Dashboard]")
 st.subheader("Trip History Information", divider=True)
 if container.button("Get Trip History", type="secondary"):
     token =  getToken()
