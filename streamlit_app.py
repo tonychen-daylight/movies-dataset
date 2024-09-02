@@ -590,8 +590,10 @@ max_duration = st.sidebar.number_input('Maximum Duration', min_value=0, value=10
 if container1.button("Find Matching Trips", type="secondary"):
     st.write("match button is clicked")
     start_date = "10-01-2023"
-    matched_trips = trip_matching(min_distance1,max_distance1,min_savings1,max_distance71,max_idle_time1,max_durations,start_date)
-    d = matched_trips.to_json(orient="records")
+    #matched_trips = trip_matching(min_distance1,max_distance1,min_savings1,max_distance71,max_idle_time1,max_durations,start_date)
+    #d = matched_trips.to_json(orient="records")
+    #st.write(d)
+    d= data_cleanup()
     st.write(d)
 
 # Radio button to select tab
