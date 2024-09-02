@@ -583,7 +583,7 @@ st.divider()
 # Sidebar for input
 st.sidebar.header('Filter Criteria')
 
-min_savings = st.sidebar.number_input('Minimum Savings', min_value=0, value=0, key='min_savings')
+min_savings = st.sidebar.number_input('Minimum Savings', min_value=0, value=-100, key='min_savings')
 max_distance = st.sidebar.number_input('Maximum Distance', min_value=0, value=1000, key='max_distance')
 max_duration = st.sidebar.number_input('Maximum Duration', min_value=0, value=1000, key='max_duration')
 
