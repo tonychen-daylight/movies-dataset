@@ -5,14 +5,14 @@ import datetime
 import requests
 
 # Trip History
-st.sidebar.header('Trip History')
+st.sidebar.header('Step 1:Trip History')
 container = st.sidebar.container(border=True)
 container.date_input("Start Date", datetime.date(2024, 6, 1))
 container.date_input("End Date", datetime.datetime.now())
 #container.button("Pull Strip", type="secondary")
   
 # Trip Matching
-st.sidebar.header('Trip Matching')
+st.sidebar.header('Step 2: Find Matching Trips')
 container1 = st.sidebar.container(border=True)
 min_distance1 = container1.number_input('Min Distance (miles)', min_value=0, value=2000, key='min_distance1')
 max_distance1 = container1.number_input('Max Distance (miles)', min_value=0, value=58000, key='max_distance1')
