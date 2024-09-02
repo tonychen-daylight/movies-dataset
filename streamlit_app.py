@@ -5,7 +5,7 @@ import datetime
 import requests
 
 # Trip History
-st.logo("data/logo-sm.svg")
+st.logo("data/dylt-logo-header.png")
 st.sidebar.header('Step 1:Trip History')
 container = st.sidebar.container(border=True)
 container.date_input("Start Date", datetime.date(2024, 6, 1))
