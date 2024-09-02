@@ -583,7 +583,7 @@ st.divider()
 if container1.button("Find Matching Trips", type="secondary"):
     st.write("match button is clicked")
     start_date = "10-01-2023"
-    matched_trips = trip_matching(min_Distance1,max_Distance1,min_Saving1,max_Distance71,max_idle_time1,max_durations,start_date)
+    matched_trips = trip_matching(min_Distance1,max_Distance1,min_Savings1,max_Distance71,max_idle_time1,max_durations,start_date)
     d = matched_trips.to_json(orient="records")
     st.write(d)
     
