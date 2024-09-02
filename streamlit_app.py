@@ -98,7 +98,7 @@ def run_optimization(min_savings, max_distance, max_duration, excluded_trip_ids)
     return results_df, excluded_df, combined_df, pulp.LpStatus[model.status], pulp.value(model.objective)
 
 # Get Trip History
-if container.button("Pull Strip", type="secondary"):
+if container.button("Get Trip History", type="secondary"):
     token =  getToken()
     #st.write(token)
     url = "https://dev-api.dylt.com/myDaylight/v1/shipments/tripHistory/06-01-2024"
