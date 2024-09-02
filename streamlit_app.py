@@ -74,6 +74,49 @@ def data_cleanup():
     df_copy["WeekDay"] = df_copy["dispatch"].dt.day_name()
     return df_copy
     
+def deduct_costs(df_copy):
+    # Get unique origins and destinations
+    origins = df_copy["origin"].unique().astype(str)
+    destinations = df_copy["destination"].unique().astype(str)
+    terminals = np.unique(
+        np.concatenate((origins, destinations))
+    )  # Includes both origins and destinations
+    weeks = np.sort(df_copy["weeknumber"].unique())
+
+    # Ded cost list initialization
+    ded_cost_list = pd.DataFrame(columns=["origin", "destination", "DedCost"])
+
+    # Filtering condition for ded cost average
+    ded_cost_average_condition = df_copy["equipment"].isin(
+        ["LTL-DED", "LTL-Fleet", "LTL-Wild"]
+    )
+
+    # Populate ded_cost_list with average costs
+    for origin_each in terminals:
+        for destination_each in terminals:
+            if origin_each != destination_each:
+                condition = (
+                    (df_copy["origin"] == origin_each)
+                    & (df_copy["destination"] == destination_each)
+                    & ded_cost_average_condition
+                )
+                if condition.any():
+                    get_avcost = df_copy.loc[condition, "cpm"].mean()
+                else:
+                    get_avcost = df_copy.loc[ded_cost_average_condition, "cpm"].mean()
+                ded_cost_new_row = pd.DataFrame(
+                    {
+                        "origin": [origin_each],
+                        "destination": [destination_each],
+                        "DedCost": [get_avcost],
+                    }
+                )
+                ded_cost_list = pd.concat(
+                    [ded_cost_list, ded_cost_new_row], ignore_index=True
+                )
+    ded_costs = ded_cost_list
+    return ded_costs
+    
 def run_optimization(min_savings, max_distance, max_duration, excluded_trip_ids):
     filtered_data = [trip for trip in data if trip['Trip ID'] not in excluded_trip_ids]
     filtered_data = [trip for trip in filtered_data if trip['Savings'] >= min_savings and trip['Distance'] <= max_distance and trip['Duration'] <= max_duration]
