@@ -112,7 +112,7 @@ if container.button("Get Trip History", type="secondary"):
     tripHistory = response.json().get("items")
     #st.dataframe(tripHistory)
 
-st.dataframe(tripHistory)
+st.dataframe(tripHistory, width=600, height=400)
 st.divider()
 
 # Sidebar for input
