@@ -99,6 +99,7 @@ def run_optimization(min_savings, max_distance, max_duration, excluded_trip_ids)
 
 # Get Trip History
 st.header("Trip Optimization Dashboard")
+st.subheader("Trip History Information", divider=True)
 if container.button("Get Trip History", type="secondary"):
     token =  getToken()
     #st.write(token)
