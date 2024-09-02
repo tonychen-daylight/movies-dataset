@@ -579,13 +579,6 @@ if container.button("Get Trip History", type="secondary"):
 st.dataframe(st.session_state.trip_history, width=1000, height=400)
 st.write("Last fetched:",  st.session_state.last_updated)
 st.divider()
-
-if container1.button("Find Matching Trips", type="secondary"):
-    st.write("match button is clicked")
-    start_date = "10-01-2023"
-    matched_trips = trip_matching(min_distance1,max_distance1,min_savings,max_distance71,max_idle_time1,max_durations,start_date)
-    d = matched_trips.to_json(orient="records")
-    st.write(d)
     
 # Sidebar for input
 st.sidebar.header('Filter Criteria')
@@ -593,6 +586,13 @@ st.sidebar.header('Filter Criteria')
 #min_savings = st.sidebar.number_input('Minimum Savings', min_value=0, value=0, key='min_savings')
 max_distance = st.sidebar.number_input('Maximum Distance', min_value=0, value=1000, key='max_distance')
 max_duration = st.sidebar.number_input('Maximum Duration', min_value=0, value=1000, key='max_duration')
+
+if container1.button("Find Matching Trips", type="secondary"):
+    st.write("match button is clicked")
+    start_date = "10-01-2023"
+    matched_trips = trip_matching(min_distance1,max_distance1,min_savings,max_distance71,max_idle_time1,max_durations,start_date)
+    d = matched_trips.to_json(orient="records")
+    st.write(d)
 
 # Radio button to select tab
 tab_titles = [tab['title'] for tab in st.session_state.tabs] if st.session_state.tabs else ['No Scenario']
