@@ -5,7 +5,7 @@ import datetime
 import requests
 
 # Trip History
-st.logo("data/dylt-logo-header.png",link="https://streamlit.io/gallery",
+st.logo("data/dylt-logo-header.png",link="https://www.dylt.com/",
     icon_image="data/logo-sm.svg")
 st.sidebar.header('Step 1:Trip History')
 container = st.sidebar.container(border=True)
