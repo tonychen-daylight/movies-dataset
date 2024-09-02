@@ -31,8 +31,6 @@ data = [
     {'Trip ID': 3, 'Start Date': '2023-11-05', 'End Date': '2023-11-06', 'Distance': 180, 'Duration': 4, 'Savings': 250}
 ]
 
-#tripHistory = []
-
 # Initialize session state    
 if 'trip_history' not in st.session_state:
     st.session_state.last_updated = datetime.time(0,0)
@@ -118,7 +116,7 @@ if container.button("Get Trip History", type="secondary"):
     st.session_state.trip_history = tripHistory
     st.session_state.last_updated = datetime.datetime.now()
 
-st.dataframe(st.session_state.trip_history, width=1000, height=600)
+st.dataframe(st.session_state.trip_history, width=1000, height=400)
 st.write("Last fetched:",  st.session_state.last_updated)
 st.divider()
 
