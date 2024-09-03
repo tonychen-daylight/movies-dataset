@@ -63,22 +63,14 @@ def getTripHstory(startDate, endDate):
 def data_cleanup():
     df_copy = []
     for item in st.session_state.trip_history:
+        # Convert 'dispatch' and 'arrival' to datetime
         item["dispatch"] = pd.to_datetime(item["dispatch"], errors="coerce")
         item["arrival"] = pd.to_datetime(item["arrival"], errors="coerce")
-        item["WeekDay"] = pd.to_datetime(item["dispatch"], errors="coerce")
-        df_copy.append(item)
-    
-    
-    # Convert 'dispatch' and 'arrival' to datetime
-    #df_copy[0]["dispatch"] = pd.to_datetime(df_copy[0]["dispatch"], errors="coerce")
-    #df_copy[0]["arrival"] = pd.to_datetime(df_copy[0]["arrival"], errors="coerce")
-    #st.write(df_copy[0]["dispatch"])
-    #st.write(df_copy[0]["arrival"])
 
-    # Add 'WeekDay' column
-    #df_copy["WeekDay"] = df_copy[0]["dispatch"].dt.day_name()
-    #df_copy[0]["WeekDay"] = df_copy[0]["dispatch"].dt
-    
+        # Add 'WeekDay' column
+        item["WeekDay"] = pd.to_datetime(item["dispatch"], errors="coerce").dt.day_name()
+        df_copy.append(item)
+        
     return df_copy
     
 def deduct_costs(df_copy):
