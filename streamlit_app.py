@@ -68,7 +68,7 @@ def data_cleanup():
         item["arrival"] = pd.to_datetime(item["arrival"], errors="coerce")
 
         # Add 'WeekDay' column
-        item["WeekDay"] = pd.to_datetime(item["dispatch"], errors="coerce").month
+        item["WeekDay"] = pd.to_datetime(item["dispatch"], errors="coerce").day
         df_copy.append(item)
         
     return df_copy
