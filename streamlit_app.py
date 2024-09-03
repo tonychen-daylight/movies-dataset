@@ -68,6 +68,7 @@ def data_cleanup():
     df_copy[0]["dispatch"] = pd.to_datetime(df_copy[0]["dispatch"], errors="coerce")
     df_copy[0]["arrival"] = pd.to_datetime(df_copy[0]["arrival"], errors="coerce")
     st.write(df_copy[0]["dispatch"])
+    st.write(df_copy[0]["arrival"])
 
     # Add 'WeekDay' column
     df_copy["WeekDay"] = df_copy["dispatch"].dt.day_name()
