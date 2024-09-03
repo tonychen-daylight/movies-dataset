@@ -71,7 +71,7 @@ def data_cleanup():
 
     # Add 'WeekDay' column
     #df_copy["WeekDay"] = df_copy[0]["dispatch"].dt.day_name()
-    df_copy[0]["WeekDay"] = df_copy[0]["dispatch"].dt.date
+    df_copy[0]["WeekDay"] = df_copy[0]["dispatch"].dt
     
     return df_copy
     
