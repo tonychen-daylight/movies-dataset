@@ -574,12 +574,13 @@ if container.button("Get Trip History", type="secondary"):
     }
     response = requests.request("GET", url, headers=headers, data=payload)
     tripHistory = response.json().get("items")
+    st.write(tripHistory)
     st.session_state.trip_history = tripHistory
     st.session_state.last_updated = datetime.datetime.now()
 
 st.dataframe(st.session_state.trip_history, width=1000, height=400)
 st.write("Last fetched:",  st.session_state.last_updated)
-st.divider()
+#st.divider()
     
 # Sidebar for input
 st.sidebar.header('Filter Criteria')
@@ -597,7 +598,7 @@ if container1.button("Find Matching Trips", type="secondary"):
     #st.dataframe(d, width=1000, height=400)
     st.write(d)
     st.write("Last matched:",  st.session_state.last_updated)
-    st.divider()
+    #st.divider()
 
 # Radio button to select tab
 tab_titles = [tab['title'] for tab in st.session_state.tabs] if st.session_state.tabs else ['No Scenario']
