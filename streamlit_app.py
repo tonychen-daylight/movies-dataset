@@ -126,7 +126,7 @@ def trip_matching(
     start_date,
 ):
     df_copy = pd.DataFrame(data_cleanup())
-    st.write(df_copy)
+    #st.write(df_copy)
     df_copy["weeknumber"] = (
         df_copy["dispatch"] - pd.to_datetime(start_date)
     ).dt.days // 7
@@ -593,8 +593,6 @@ if container1.button("Find Matching Trips", type="secondary"):
     matched_trips = trip_matching(min_distance1,max_distance1,min_savings1,max_distance71,max_idle_time1,max_durations,start_date)
     d = matched_trips.to_json(orient="records")
     st.write(d)
-    #d= data_cleanup()
-    #st.write(d)
 
 # Radio button to select tab
 tab_titles = [tab['title'] for tab in st.session_state.tabs] if st.session_state.tabs else ['No Scenario']
