@@ -64,7 +64,7 @@ def data_cleanup():
     df_copy = []
     for item in st.session_state.trip_history:
         df_copy.append(item)
-        print(item)
+        st.write(item)
     
     
     # Convert 'dispatch' and 'arrival' to datetime
