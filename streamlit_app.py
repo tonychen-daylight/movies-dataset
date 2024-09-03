@@ -71,7 +71,7 @@ def data_cleanup():
     st.write(df_copy[0]["arrival"])
 
     # Add 'WeekDay' column
-    df_copy["WeekDay"] = df_copy["dispatch"].dt.day_name()
+    df_copy["WeekDay"] = df_copy[0]["dispatch"].dt.day_name()
     st.write(df_copy)
     return df_copy
     
