@@ -574,7 +574,7 @@ if container.button("Get Trip History", type="secondary"):
     }
     response = requests.request("GET", url, headers=headers, data=payload)
     tripHistory = response.json().get("items")
-    st.write(tripHistory)
+    #st.write(tripHistory)
     st.session_state.trip_history = tripHistory
     st.session_state.last_updated = datetime.datetime.now()
 
@@ -596,7 +596,7 @@ if container1.button("Find Matching Trips", type="secondary"):
     matched_trips = trip_matching(min_distance1,max_distance1,min_savings1,max_distance71,max_idle_time1,max_durations,start_date)
     d = matched_trips.to_json(orient="records")
     #st.dataframe(d, width=1000, height=400)
-    st.write(d)
+    st.write(matched_trips)
     st.write("Last matched:",  st.session_state.last_updated)
     #st.divider()
 
