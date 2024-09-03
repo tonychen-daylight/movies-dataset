@@ -4,7 +4,11 @@ import pulp
 import datetime
 import requests
 import numpy as np
-st.set_page_config(page_title="Trip Optimization",page_icon=":rocket:", layout="wide", initial_sizebar_state="expanded")
+
+st.set_page_config(page_title="Trip Optimization",
+                   page_icon=":rocket:", 
+                   layout="wide", 
+                   initial_sidebar_state="expanded")
 
 # Trip History
 st.logo("data/dylt-logo-header.png",link="https://www.dylt.com/",
