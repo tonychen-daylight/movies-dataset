@@ -63,8 +63,9 @@ def getTripHstory(startDate, endDate):
 def data_cleanup():
     df_copy = []
     for item in st.session_state.trip_history:
+        item["dispatch"] = pd.to_datetime(item["dispatch"], errors="coerce")
+        item["arrival"] = pd.to_datetime(item["arrival"], errors="coerce")
         df_copy.append(item)
-        st.write(item)
     
     
     # Convert 'dispatch' and 'arrival' to datetime
