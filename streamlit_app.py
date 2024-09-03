@@ -125,7 +125,7 @@ def trip_matching(
     max_duration,
     start_date,
 ):
-    df_copy = data_cleanup()
+    df_copy = pd.DataFrame(data_cleanup())
     st.write(df_copy)
     df_copy["weeknumber"] = (
         df_copy["dispatch"] - pd.to_datetime(start_date)
