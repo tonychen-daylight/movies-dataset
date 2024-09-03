@@ -61,14 +61,10 @@ def getTripHstory(startDate, endDate):
     return (response.text)
 
 def data_cleanup():
-    # Load the CSV file
-    #scsv = FilePicker1.files[0].readContents()
-    #f = StringIO(scsv)
-    #df = pd.read_csv(f)
     df_copy = st.session_state.trip_history
-    #st.write(df_copy)
+    st.write(df_copy)
+    
     # Convert 'dispatch' and 'arrival' to datetime
-    st.write(df_copy["dispatch"])
     df_copy["dispatch"] = pd.to_datetime(df_copy["dispatch"], errors="coerce")
     df_copy["arrival"] = pd.to_datetime(df_copy["arrival"], errors="coerce")
 
