@@ -598,10 +598,14 @@ if container1.button("Find Matching Trips", type="secondary"):
     start_date = "10-01-2023"
     matched_trips = trip_matching(min_distance1,max_distance1,min_savings1,max_distance71,max_idle_time1,max_durations,start_date)
     d = matched_trips.to_json(orient="records")
-    st.dataframe(matched_trips, width=1000, height=400)
+    #st.dataframe(matched_trips, width=1000, height=400)
     #st.write(matched_trips)
-    st.write("Last matched:",  st.session_state.last_updated)
+    st.session_state.trips_matched = matched_trips
+    st.session_state.last_matched = datetime.datetime.now()
     #st.divider()
+
+st.dataframe(st.session_state.trips_matched, width=1000, height=400)
+st.write("Last matched:",  st.session_state.last_matched)
 
 # Radio button to select tab
 tab_titles = [tab['title'] for tab in st.session_state.tabs] if st.session_state.tabs else ['No Scenario']
