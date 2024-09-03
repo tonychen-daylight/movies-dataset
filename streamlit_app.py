@@ -595,7 +595,7 @@ if container1.button("Find Matching Trips", type="secondary"):
     matched_trips = trip_matching(min_distance1,max_distance1,min_savings1,max_distance71,max_idle_time1,max_durations,start_date)
     d = matched_trips.to_json(orient="records")
     #st.dataframe(d, width=1000, height=400)
-    st.table(d)
+    st.write(d)
     st.write("Last matched:",  st.session_state.last_updated)
     st.divider()
 
