@@ -65,7 +65,7 @@ def data_cleanup():
     for item in st.session_state.trip_history:
         item["dispatch"] = pd.to_datetime(item["dispatch"], errors="coerce")
         item["arrival"] = pd.to_datetime(item["arrival"], errors="coerce")
-        item["WeekDay"] = pd.to_datetime(item["arrival"], errors="coerce")
+        item["WeekDay"] = pd.to_datetime(item["dispatch"], errors="coerce")
         df_copy.append(item)
     
     
