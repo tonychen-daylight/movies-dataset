@@ -36,6 +36,9 @@ data = [
 if 'trip_history' not in st.session_state:
     st.session_state.last_updated = datetime.time(0,0)
     st.session_state.trip_history = []
+if 'trips_matched' not in st.session_state:
+    st.session_state.last_matched = datetime.time(0,0)
+    st.session_state.trips_matched = []
 if 'tabs' not in st.session_state:
     st.session_state.tabs = []  # Store tab data as a list of dictionaries
 if 'selected_tab' not in st.session_state:
