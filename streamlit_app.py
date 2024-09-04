@@ -591,6 +591,12 @@ st.write("Last fetched:",  st.session_state.last_updated)
 #st.divider()
 available_trips_choose = [trip['trip_number'] for trip in st.session_state.trip_history]
 st.write(available_trips_choose)
+selected_excluded_trip_ids_selected = container1.multiselect(
+    'Select trips to exclude',
+    options=available_trips_choose,
+    default=[],
+    key='exclude_trips_selected'
+)
     
 # Sidebar for input
 st.sidebar.header('Filter Criteria')
