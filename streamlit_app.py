@@ -590,7 +590,7 @@ st.dataframe(st.session_state.trip_history, width=1000, height=400)
 st.write("Last fetched:",  st.session_state.last_updated)
 #st.divider()
 available_trips_choose = [trip['trip_number'] for trip in st.session_state.trip_history]
-st.write(available_trip_choose)
+st.write(available_trips_choose)
     
 # Sidebar for input
 st.sidebar.header('Filter Criteria')
