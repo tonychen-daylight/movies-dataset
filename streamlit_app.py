@@ -30,13 +30,6 @@ max_idle_time1 = container1.number_input('Max Idle Time (days)', min_value=0, va
 max_durations = container1.number_input('Max Duration (days)', min_value=0, value=8, key='max_durations')
 #container1.button("Trip Matching", type="secondary")
 
-# Sample dataset
-data = [
-    {'Trip ID': 1, 'Start Date': '2023-11-01', 'End Date': '2023-11-02', 'Distance': 150, 'Duration': 5, 'Savings': 200},
-    {'Trip ID': 2, 'Start Date': '2023-11-03', 'End Date': '2023-11-04', 'Distance': 200, 'Duration': 6, 'Savings': 300},
-    {'Trip ID': 3, 'Start Date': '2023-11-05', 'End Date': '2023-11-06', 'Distance': 180, 'Duration': 4, 'Savings': 250}
-]
-
 # Initialize session state    
 if 'trip_history' not in st.session_state:
     st.session_state.last_updated = datetime.time(0,0)
@@ -590,7 +583,7 @@ st.dataframe(st.session_state.trip_history, width=1000, height=400)
 st.write("Last fetched:",  st.session_state.last_updated)
 #st.divider()
 available_trips_choose = [trip['trip_number'] for trip in st.session_state.trip_history]
-st.write(available_trips_choose)
+#st.write(available_trips_choose)
 selected_excluded_trip_ids_selected = container1.multiselect(
     'Select trips to exclude',
     options=available_trips_choose,
