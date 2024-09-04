@@ -566,4 +566,9 @@ if container1.button("Find Matching Trips", type="secondary"):
 st.dataframe(st.session_state.trips_matched, width=1000, height=400)
 st.write("Last matched:",  st.session_state.last_matched)
 
+st.sidebar.header('Step 3: Show Summary')
+container2 = st.sidebar.container(border=True)
+if container2.button("Show Summary", type="secondary"):
+  st.dataframe(st.session_state.trips_matched, width=1000, height=400)
+
 
