@@ -522,46 +522,6 @@ def trip_matching(
     # Matched_Trips.to_csv("matched_trips.csv", index=True)
     return Matched_Trips
     
-def run_optimization(min_savings, max_distance, max_duration, excluded_trip_ids):
-    filtered_data = [trip for trip in data if trip['Trip ID'] not in excluded_trip_ids]
-    filtered_data = [trip for trip in filtered_data if trip['Savings'] >= min_savings and trip['Distance'] <= max_distance and trip['Duration'] <= max_duration]
-
-    model = pulp.LpProblem("TripOptimization", pulp.LpMaximize)
-    trips = [trip['Trip ID'] for trip in filtered_data]
-    x = pulp.LpVariable.dicts("Trip", trips, cat=pulp.LpBinary)
-
-    model += pulp.lpSum([trip['Savings'] * x[trip['Trip ID']] for trip in filtered_data]) - \
-             pulp.lpSum([trip['Distance'] * x[trip['Trip ID']] for trip in filtered_data]) - \
-             pulp.lpSum([trip['Duration'] * x[trip['Trip ID']] for trip in filtered_data])
-
-    model += pulp.lpSum([x[trip['Trip ID']] for trip in filtered_data]) <= 2
-
-    model.solve()
-
-    results = {
-        'Trip ID': [],
-        'Selected': [],
-        'Savings': [],
-        'Distance': [],
-        'Duration': []
-    }
-
-    for trip in filtered_data:
-        results['Trip ID'].append(trip['Trip ID'])
-        results['Selected'].append(x[trip['Trip ID']].value())
-        results['Savings'].append(trip['Savings'])
-        results['Distance'].append(trip['Distance'])
-        results['Duration'].append(trip['Duration'])
-
-    results_df = pd.DataFrame(results)
-
-    excluded_data = [trip for trip in data if trip['Trip ID'] in excluded_trip_ids]
-    excluded_df = pd.DataFrame(excluded_data)
-
-    combined_df = pd.concat([results_df, excluded_df.rename(columns=lambda x: f"Excluded_{x}")], axis=1)
-
-    return results_df, excluded_df, combined_df, pulp.LpStatus[model.status], pulp.value(model.objective)
-
 # Get Trip History
 st.header(":blue[Trip Optimization Dashboard]")
 st.subheader("Trip History Information", divider=True)
