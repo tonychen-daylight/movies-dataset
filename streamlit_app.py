@@ -571,7 +571,7 @@ st.subheader("Trip Optimization Summary", divider=True)
 container2 = st.sidebar.container(border=True)
 if container2.button("Show Summary", type="secondary"):
   event = st.dataframe(st.session_state.trips_matched, width=1000, height=400, on_select="rerun",
-    selection_mode="single-row")
+    selection_mode="single-row", key="data")
   event.selection
 
 
