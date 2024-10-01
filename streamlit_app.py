@@ -579,8 +579,8 @@ if container2.button("Show Summary", type="secondary"):
   data = json.loads(st.session_state.trips_matched.to_json(orient="records"))
   loopList_copy = []
   for item in data:
-    #loopList_copy.append(item)
-    st.write(item)
+    loopList_copy.append(item)
+    st.write(loopList_copy)
 
  
   
