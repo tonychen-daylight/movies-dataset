@@ -579,7 +579,7 @@ if container2.button("Show Summary", type="secondary"):
   for item in st.session_state.trips_matched:
     loopList_copy.append(item)
 
-  st.write(loopList_copy)
+  st.write(st.session_state.trips_matched)
   
   loopList = [
     {'Loop Name': "ONT-EWR-DAL-Sunday-Tuesday-Thursday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.8},
