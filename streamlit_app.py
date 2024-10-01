@@ -575,11 +575,11 @@ st.subheader("Loop List", divider=True)
 container2 = st.sidebar.container(border=True)
 if container2.button("Show Summary", type="secondary"):
   #walker = pyg.walk(st.session_state.trips_matched)
-  #st.write(st.session_state.trips_matched.to_json(orient="records"))
+  st.write(st.session_state.trips_matched.to_json(orient="records"))
   loopList_copy = []
   for item in st.session_state.trips_matched.to_json(orient="records"):
     #loopList_copy.append(item)
-    st.write(item)
+    #st.write(item)
 
  
   
