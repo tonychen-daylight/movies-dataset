@@ -578,13 +578,18 @@ if container2.button("Show Summary", type="secondary"):
   #walker = pyg.walk(st.session_state.trips_matched)
   data = json.loads(st.session_state.trips_matched.to_json(orient="records"))
   loopList_copy = []
+  loopName = ""
+  count = 0
   for item in data:
+    if loopName == item["Loop_Name"]:
+      count = count+ 1
     new_item = {
       "Loop Name": item["Loop_Name"],
-      "Counts Of Week": 2,
+      "Counts Of Week": count,
       "Week Number": item["WeekNumber"],
       'Avg Loop Duration': item["TravelTime"]
     }
+    loopName = item["Loop_Name"]
     loopList_copy.append(new_item)
 
   #st.write(loopList_copy)
