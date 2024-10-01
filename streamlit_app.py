@@ -605,7 +605,7 @@ if container2.button("Show Summary", type="secondary"):
     {'Loop Name': "MDW-CXIT-DAL-SFO-Tuesday-Thursday-Saturday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.6},
     {'Loop Name': "MIS-DAL-ONT-Wednesday-Friday-Sunday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.6}
   ]
-  st.dataframe(loopList, width=1000, height=400)
+  st.dataframe(loopList_copy, width=1000, height=400)
 
   #AgGrid(st.session_state.trips_matched)
   st.subheader("Loop Detail", divider=True)
