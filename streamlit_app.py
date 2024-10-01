@@ -575,6 +575,12 @@ st.subheader("Loop List", divider=True)
 container2 = st.sidebar.container(border=True)
 if container2.button("Show Summary", type="secondary"):
   #walker = pyg.walk(st.session_state.trips_matched)
+  loopList_copy = []
+  for item in st.session_state.trips_matched:
+    loopList_copy.append(item)
+
+  st.write(loopList_copy)
+  
   loopList = [
     {'Loop Name': "ONT-EWR-DAL-Sunday-Tuesday-Thursday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.8},
     {'Loop Name': "ONT-EWR-DAL-Sunday-Tuesday-Friday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.7},
