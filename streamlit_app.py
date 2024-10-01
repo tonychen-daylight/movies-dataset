@@ -564,14 +564,14 @@ if container1.button("Find Matching Trips", type="secondary"):
     st.session_state.last_matched = datetime.datetime.now()
     #st.divider()
 
-#st.dataframe(st.session_state.trips_matched, width=1000, height=400)
-grid_return1 = AgGrid(st.session_state.trips_matched)
+st.dataframe(st.session_state.trips_matched, width=1000, height=400)
+#grid_return1 = AgGrid(st.session_state.trips_matched)
 st.write("Last matched:",  st.session_state.last_matched)
 
 st.sidebar.header('Step 3: Show Summary')
 st.subheader("Trip Optimization Summary", divider=True)
 container2 = st.sidebar.container(border=True)
 if container2.button("Show Summary", type="secondary"):
-  #grid_return = AgGrid(st.session_state.trips_matched)
+  grid_return = AgGrid(st.session_state.trips_matched)
 
 
