@@ -575,6 +575,7 @@ st.subheader("Trip Optimization Summary", divider=True)
 container2 = st.sidebar.container(border=True)
 if container2.button("Show Summary", type="secondary"):
   #walker = pyg.walk(st.session_state.trips_matched)
+  AgGrid(st.session_state.trips_matched)
   
 
 
