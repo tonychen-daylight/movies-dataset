@@ -575,6 +575,6 @@ st.subheader("Trip Optimization Summary", divider=True)
 container2 = st.sidebar.container(border=True)
 if container2.button("Show Summary", type="secondary"):
   walker = StreamlitRenderer(st.session_state.trips_matched)
-  walker.explorer()
+  
 
 
