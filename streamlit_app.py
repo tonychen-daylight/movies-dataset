@@ -576,12 +576,15 @@ container2 = st.sidebar.container(border=True)
 if container2.button("Show Summary", type="secondary"):
   #walker = pyg.walk(st.session_state.trips_matched)
   loopList = [
-    {'Loop Name': "ONT-EWR-DAL-Sunday-Tuesday-Thursday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.5},
-    {'Loop Name': "ONT-EWR-DAL-Sunday-Tuesday-Friday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.4},
-    {'Loop Name': "ONT-EWR-DAL-Saturday-Tuesday-Thursday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.4},
-    {'Loop Name': "ONT-EWR-DAL-Saturday-Tuesday-Friday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.4},
-    {'Loop Name': "EWR-DAL-ONT-Tuesday-Thursday-Saturday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.4},
-    {'Loop Name': "EWR-DAL-ONT-Tuesday-Thursday-Saturday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.4}
+    {'Loop Name': "ONT-EWR-DAL-Sunday-Tuesday-Thursday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.8},
+    {'Loop Name': "ONT-EWR-DAL-Sunday-Tuesday-Friday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.7},
+    {'Loop Name': "ONT-EWR-DAL-Saturday-Tuesday-Thursday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 7.0},
+    {'Loop Name': "ONT-EWR-DAL-Saturday-Tuesday-Friday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 6.6},
+    {'Loop Name': "EWR-DAL-ONT-Tuesday-Thursday-Saturday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 6.0},
+    {'Loop Name': "EWR-DAL-ONT-Tuesday-Thursday-Saturday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.6},
+    {'Loop Name': "EWR-DAL-ONT-Tuesday-Thursday-Friday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.6},
+    {'Loop Name': "EWR-DAL-ONT-Tuesday-Friday-Sunday", 'Count Of Weeks': '2', 'Week Number': '36', 'Avg Loop Duration': 5.6},
+    {'Loop Name': "", 'Count Of Weeks': '', 'Week Number': '35', 'Avg Loop Duration': 5.7}
   ]
   st.dataframe(loopList, width=1000, height=400)
 
