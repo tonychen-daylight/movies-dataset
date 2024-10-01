@@ -599,7 +599,7 @@ if container2.button("Show Summary", type="secondary"):
   loopDetail = [
     {'Loop Name': "ONT-EWR-DAL-Sunday-Tuesday-Thursday", 'Week Number': '36','TripNumber1': '309856', 'TripNumber2': '360987', 'TripNumber3': '3615243'}
   ]
-  st.dataframe(loopDetail, width=1000, height=400)
+  st.dataframe(loopDetail, width=1000, height=200)
   
 
 
