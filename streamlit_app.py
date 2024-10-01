@@ -596,6 +596,9 @@ if container2.button("Show Summary", type="secondary"):
 
   #AgGrid(st.session_state.trips_matched)
   st.subheader("Loop Detail", divider=True)
+  loopDetail = [
+    {'Loop Name': "ONT-EWR-DAL-Sunday-Tuesday-Thursday", 'Week Number': '36','TripNumber1': '309856', 'TripNumber2': '360987', 'TripNumber3': '3615243'}
+  ]
   
 
 
