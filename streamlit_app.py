@@ -580,6 +580,7 @@ if container2.button("Show Summary", type="secondary"):
   loopList_copy = []
   for item in data:
     item["Counts Of Week"] =2
+    item["Week Number"] =item["WeekNumber"]
     loopList_copy.append(item)
 
   st.write(loopList_copy)
