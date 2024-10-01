@@ -574,7 +574,7 @@ st.sidebar.header('Step 3: Show Summary')
 st.subheader("Trip Optimization Summary", divider=True)
 container2 = st.sidebar.container(border=True)
 if container2.button("Show Summary", type="secondary"):
-  walker = pyg.walk(st.session_state.trips_matched)
+  #walker = pyg.walk(st.session_state.trips_matched)
   
 
 
