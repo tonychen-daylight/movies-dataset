@@ -577,9 +577,10 @@ if container2.button("Show Summary", type="secondary"):
   #walker = pyg.walk(st.session_state.trips_matched)
   loopList_copy = []
   for item in st.session_state.trips_matched:
-    loopList_copy.append(item["Loop_Name"])
+    loopList_copy.append(item)
+    st.write(item)
 
-  st.write(loopList)
+ 
   
   loopList = [
     {'Loop Name': "ONT-EWR-DAL-Sunday-Tuesday-Thursday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.8},
