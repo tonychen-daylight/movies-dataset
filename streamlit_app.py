@@ -579,10 +579,12 @@ if container2.button("Show Summary", type="secondary"):
   data = json.loads(st.session_state.trips_matched.to_json(orient="records"))
   loopList_copy = []
   for item in data:
-    item["Loop Name"] =item["Loop_Name"]
-    item["Counts Of Week"] =2
-    item["Week Number"] =item["WeekNumber"]
-    loopList_copy.append(item)
+    new_item = {
+      "Loop Name": item["Loop_Name"],
+      "Counts Of Week": =2,
+      "Week Number" =item["WeekNumber"]
+    }
+    loopList_copy.append(new_item)
 
   st.write(loopList_copy)
   
