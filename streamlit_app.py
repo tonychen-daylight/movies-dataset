@@ -579,7 +579,7 @@ if container2.button("Show Summary", type="secondary"):
   data = json.loads(st.session_state.trips_matched.to_json(orient="records"))
   loopList_copy = []
   loopName = ""
-  count = 0
+  count = 1
   for item in data:
     if loopName == item["Loop_Name"]:
       count = count+ 1
