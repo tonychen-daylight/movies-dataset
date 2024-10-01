@@ -595,6 +595,7 @@ if container2.button("Show Summary", type="secondary"):
   st.dataframe(loopList, width=1000, height=400)
 
   #AgGrid(st.session_state.trips_matched)
+  st.subheader("Loop Detail", divider=True)
   
 
 
