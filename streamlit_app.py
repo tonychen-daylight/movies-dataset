@@ -597,7 +597,7 @@ if container2.button("Show Summary", type="secondary"):
   #AgGrid(st.session_state.trips_matched)
   st.subheader("Loop Detail", divider=True)
   loopDetail = [
-    {'Loop Name': "ONT-EWR-DAL-Sunday-Tuesday-Thursday", 'Week Number': '36','TripNumber1': '309856', 'TripNumber2': '360987', 'TripNumber3': '3615243'}
+    {'Loop Name': "ONT-EWR-DAL-Sunday-Tuesday-Thursday", 'Week Number': '36','TripNumber1': '309856', 'TripNumber2': '360987', 'TripNumber3': '3615243', 'Dispatch1 datetime': '6/1/2024 06:00 AM','Dispatch1 LHdow': 'Sunday','Carrier 1': 'MUSA LOGISTICS INC','Ave Trip 1 wait hours': '24'}
   ]
   st.dataframe(loopDetail, width=1000, height=200)
   
