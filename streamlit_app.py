@@ -581,7 +581,7 @@ if container2.button("Show Summary", type="secondary"):
   for item in data:
     new_item = {
       "Loop Name": item["Loop_Name"],
-      "Counts Of Week": =2,
+      "Counts Of Week": 2,
       "Week Number" =item["WeekNumber"]
     }
     loopList_copy.append(new_item)
