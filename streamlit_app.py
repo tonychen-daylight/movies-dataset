@@ -585,6 +585,12 @@ if container2.button("Show Summary", type="secondary"):
     {'Loop Name': "EWR-DAL-ONT-Tuesday-Thursday-Friday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.6},
     {'Loop Name': "EWR-DAL-ONT-Tuesday-Friday-Sunday", 'Count Of Weeks': '2', 'Week Number': '36', 'Avg Loop Duration': 5.6},
     {'Loop Name': "", 'Count Of Weeks': '', 'Week Number': '35', 'Avg Loop Duration': 5.7}
+    {'Loop Name': "EWR-DAL-ONT-Wednesday-Friday-Sunday", 'Count Of Weeks': '2', 'Week Number': '36', 'Avg Loop Duration': 5.6},
+    {'Loop Name': "", 'Count Of Weeks': '', 'Week Number': '35', 'Avg Loop Duration': 5.7},
+    {'Loop Name': "DAL-ONT-EWR-Thursday-Saturday-Tuesday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.6},
+    {'Loop Name': "DAL-ONT-EWR-Friday-Sunday-Tuesday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.6},
+    {'Loop Name': "MDW-CXIT-DAL-SFO-Tuesday-Thursday-Saturday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.6},
+    {'Loop Name': "MIS-DAL-ONT-Wednesday-Friday-Sunday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.6}
   ]
   st.dataframe(loopList, width=1000, height=400)
 
