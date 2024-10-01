@@ -1,5 +1,6 @@
 import streamlit as st
 from st_aggrid import AgGrid
+import pygwalker as pyg
 import pandas as pd
 import pulp
 import datetime
