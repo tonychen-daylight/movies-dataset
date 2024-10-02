@@ -583,6 +583,8 @@ if container2.button("Show Summary", type="secondary"):
   for item in data:
     if loopName == item["Loop_Name"]:
       count = count+ 1
+    else:
+      count = 1
     new_item = {
       "Loop Name": item["Loop_Name"],
       "Counts Of Week": count,
@@ -593,24 +595,6 @@ if container2.button("Show Summary", type="secondary"):
     loopList_copy.append(new_item)
 
   #st.write(loopList_copy)
-  
-  loopList = [
-    {'Loop Name': "ONT-EWR-DAL-Sunday-Tuesday-Thursday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.8},
-    {'Loop Name': "ONT-EWR-DAL-Sunday-Tuesday-Friday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.7},
-    {'Loop Name': "ONT-EWR-DAL-Saturday-Tuesday-Thursday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 7.0},
-    {'Loop Name': "ONT-EWR-DAL-Saturday-Tuesday-Friday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 6.6},
-    {'Loop Name': "EWR-DAL-ONT-Tuesday-Thursday-Saturday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 6.0},
-    {'Loop Name': "EWR-DAL-ONT-Tuesday-Thursday-Saturday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.6},
-    {'Loop Name': "EWR-DAL-ONT-Tuesday-Thursday-Friday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.6},
-    {'Loop Name': "EWR-DAL-ONT-Tuesday-Friday-Sunday", 'Count Of Weeks': '2', 'Week Number': '36', 'Avg Loop Duration': 5.6},
-    {'Loop Name': "", 'Count Of Weeks': '', 'Week Number': '35', 'Avg Loop Duration': 5.7},
-    {'Loop Name': "EWR-DAL-ONT-Wednesday-Friday-Sunday", 'Count Of Weeks': '2', 'Week Number': '36', 'Avg Loop Duration': 5.6},
-    {'Loop Name': "", 'Count Of Weeks': '', 'Week Number': '35', 'Avg Loop Duration': 5.7},
-    {'Loop Name': "DAL-ONT-EWR-Thursday-Saturday-Tuesday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.6},
-    {'Loop Name': "DAL-ONT-EWR-Friday-Sunday-Tuesday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.6},
-    {'Loop Name': "MDW-CXIT-DAL-SFO-Tuesday-Thursday-Saturday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.6},
-    {'Loop Name': "MIS-DAL-ONT-Wednesday-Friday-Sunday", 'Count Of Weeks': '1', 'Week Number': '36', 'Avg Loop Duration': 5.6}
-  ]
   st.dataframe(loopList_copy, width=1000, height=400)
 
   #AgGrid(st.session_state.trips_matched)
