@@ -597,6 +597,7 @@ if container2.button("Show Summary", type="secondary") or (len(st.session_state.
   #st.write(loopList_copy)
   event = st.dataframe(loopList_copy, width=1000, height=400,  use_container_width=True,
         hide_index=True,
+        selection_mode = 'single-row',
         on_select="rerun")
 
   #AgGrid(st.session_state.trips_matched)
