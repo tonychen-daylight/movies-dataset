@@ -606,12 +606,18 @@ if container2.button("Show Summary", type="secondary") or (len(st.session_state.
   #filtered_df = st.session_state.trips_matched.iloc[selected]
   #st.write(filtered_df)
   df = pd.DataFrame(loopList_copy).iloc[selected]
-  st.write(df["Loop Name"])
+  st.write(df)
+  loopName = df["Loop Name"]
+  loopDetail = []
+  for item in data:
+    if loopName == item["Loop_Name"]:
+      loopDetail.append(item)
+    
   
   #loopDetail = [
     #{'Loop Name': "ONT-EWR-DAL-Sunday-Tuesday-Thursday", 'Week Number': '36','TripNumber1': '309856', 'TripNumber2': '360987', 'TripNumber3': '3615243', 'Dispatch1 datetime': '6/1/2024 06:00 AM','Dispatch1 LHdow': 'Sunday','Carrier 1': 'MUSA LOGISTICS INC','Ave Trip 1 wait hours': '24','Dispatch2 datetime': '6/1/2024 06:00 AM','Dispatch2 LHdow': 'Tuesday','Carrier 2': 'MEDALLION TRANSPORT & LOGISTICS LLC','Ave Trip 2 wait hours': '24','Dispatch3 datetime': '6/1/2024 06:00 AM','Dispatch3 LHdow': 'Thursday','Carrier 3': 'ITF LLC','Ave Trip 3 wait hours': '24'}
   #]
-  #st.dataframe(loopDetail, width=1000, height=200)
+  st.dataframe(loopDetail, width=1000, height=200)
   
 
 
