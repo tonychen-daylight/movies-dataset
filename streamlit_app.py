@@ -603,18 +603,19 @@ if container2.button("Show Summary", type="secondary") or (len(st.session_state.
   #AgGrid(st.session_state.trips_matched)
   st.subheader("Loop Detail", divider=True)
   selected = event.selection.rows
-  st.write(selected)
-  #filtered_df = st.session_state.trips_matched.iloc[selected]
-  #st.write(filtered_df)
-  df = pd.DataFrame(loopList_copy).iloc[selected]
-  #st.write(df)
-  loopNameSelected = str(df['Loop Name'].values[0])
-  #st.write(loopNameSelected)
-  loopDetail = []
-  for item in data:
-    if (item.get("Loop_Name") == loopNameSelected):
-      loopDetail.append(item)
-  st.dataframe(loopDetail, width=1000, height=200)
+  #st.write(selected)
+  if (len(selected)> 0):
+    #filtered_df = st.session_state.trips_matched.iloc[selected]
+    #st.write(filtered_df)
+    df = pd.DataFrame(loopList_copy).iloc[selected]
+    #st.write(df)
+    loopNameSelected = str(df['Loop Name'].values[0])
+    #st.write(loopNameSelected)
+    loopDetail = []
+    for item in data:
+     if (item.get("Loop_Name") == loopNameSelected):
+       loopDetail.append(item)
+    st.dataframe(loopDetail, width=1000, height=200)
   
 
 
