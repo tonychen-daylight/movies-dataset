@@ -595,7 +595,7 @@ if container2.button("Show Summary", type="secondary"):
     loopList_copy.append(new_item)
 
   #st.write(loopList_copy)
-  st.dataframe(loopList_copy, width=1000, height=400)
+  st.dataframe(loopList_copy, width=1000, height=400, on_select="rerun")
 
   #AgGrid(st.session_state.trips_matched)
   st.subheader("Loop Detail", divider=True)
