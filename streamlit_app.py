@@ -607,10 +607,10 @@ if container2.button("Show Summary", type="secondary") or (len(st.session_state.
   #st.write(filtered_df)
   df = pd.DataFrame(loopList_copy).iloc[selected]
   st.write(df)
-  loopName = df["Loop Name"]
+  loopNameSelected = df["Loop Name"]
   loopDetail = []
   for item in data:
-    if (item.get("Loop_Name") == loopName):
+    if (item.get("Loop_Name") == loopNameSelected):
       loopDetail.append(item)
     
   #loopDetail = [
