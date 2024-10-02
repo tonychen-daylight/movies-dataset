@@ -602,8 +602,7 @@ if container2.button("Show Summary", type="secondary") or (len(st.session_state.
   #AgGrid(st.session_state.trips_matched)
   st.subheader("Loop Detail", divider=True)
   selected = event.selection.rows
-  filtered_df = loopList_copy.iloc[selected]
-  st.write(filtered_df)
+  st.write(selected)
   loopDetail = [
     {'Loop Name': "ONT-EWR-DAL-Sunday-Tuesday-Thursday", 'Week Number': '36','TripNumber1': '309856', 'TripNumber2': '360987', 'TripNumber3': '3615243', 'Dispatch1 datetime': '6/1/2024 06:00 AM','Dispatch1 LHdow': 'Sunday','Carrier 1': 'MUSA LOGISTICS INC','Ave Trip 1 wait hours': '24','Dispatch2 datetime': '6/1/2024 06:00 AM','Dispatch2 LHdow': 'Tuesday','Carrier 2': 'MEDALLION TRANSPORT & LOGISTICS LLC','Ave Trip 2 wait hours': '24','Dispatch3 datetime': '6/1/2024 06:00 AM','Dispatch3 LHdow': 'Thursday','Carrier 3': 'ITF LLC','Ave Trip 3 wait hours': '24'}
   ]
