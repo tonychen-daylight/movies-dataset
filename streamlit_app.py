@@ -611,7 +611,7 @@ if container2.button("Show Summary", type="secondary") or (len(st.session_state.
   st.write(loopNameSelected)
   loopDetail = []
   for item in data:
-    if (item.get("Loop_Name") == loopNameSelected):
+    if (item.get("Loop_Name") == "EWR-DAL-ONT-Wednesday-Friday-Sunday"):
       loopDetail.append(item)
     
   #loopDetail = [
