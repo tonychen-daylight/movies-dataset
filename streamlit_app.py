@@ -608,10 +608,10 @@ if container2.button("Show Summary", type="secondary") or (len(st.session_state.
   df = pd.DataFrame(loopList_copy).iloc[selected]
   #st.write(df)
   loopNameSelected = str(df['Loop Name'].values[0])
-  st.write(loopNameSelected)
+  #st.write(loopNameSelected)
   loopDetail = []
   for item in data:
-    if (item.get("Loop_Name") == "EWR-DAL-ONT-Wednesday-Friday-Sunday"):
+    if (item.get("Loop_Name") == loopNameSelected):
       loopDetail.append(item)
     
   #loopDetail = [
