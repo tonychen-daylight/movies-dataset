@@ -67,6 +67,7 @@ def getTripHstory(startDate, endDate):
     return (response.text)
 
 def data_cleanup(exclude_trips):
+    st.write(exclude_trips) 
     df_copy = []
     for item in st.session_state.trip_history:
         # Convert 'dispatch' and 'arrival' to datetime
@@ -555,7 +556,7 @@ selected_excluded_trip_ids_selected = container1.multiselect(
     default=[],
     key='exclude_trips_selected'
 )
-st.write(selected_excluded_trip_ids_selected)    
+#st.write(selected_excluded_trip_ids_selected)    
 st.subheader("Trips Matched", divider=True)
 if container1.button("Find Matching Trips", type="secondary"):
     #st.write("match button is clicked")
