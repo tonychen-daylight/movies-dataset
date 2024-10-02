@@ -574,8 +574,7 @@ st.write("Last matched:",  st.session_state.last_matched)
 st.sidebar.header('Step 3: Show Summary')
 st.subheader("Loop List", divider=True)
 container2 = st.sidebar.container(border=True)
-#if container2.button("Show Summary", type="secondary"):
-if (len(st.session_state.trips_matched.to_json(orient="records")) != 0):
+if container2.button("Show Summary", type="secondary") || (len(st.session_state.trips_matched.to_json(orient="records")) > 0):
   #walker = pyg.walk(st.session_state.trips_matched)
   data = json.loads(st.session_state.trips_matched.to_json(orient="records"))
   loopList_copy = []
