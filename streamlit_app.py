@@ -610,6 +610,7 @@ if container2.button("Show Summary", type="secondary") or (len(st.session_state.
   loopName = df["Loop Name"]
   loopDetail = []
   for item in data:
+    if (item.get("Loop_Name") == loopName):
       loopDetail.append(item)
     
   #loopDetail = [
