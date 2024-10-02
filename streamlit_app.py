@@ -606,7 +606,7 @@ if container2.button("Show Summary", type="secondary") or (len(st.session_state.
   #filtered_df = st.session_state.trips_matched.iloc[selected]
   #st.write(filtered_df)
   df = pd.DataFrame(loopList_copy).iloc[selected]
-  st.write(df)
+  #st.write(df)
   loopNameSelected = df["Loop Name"]
   st.write(loopNameSelected)
   loopDetail = []
