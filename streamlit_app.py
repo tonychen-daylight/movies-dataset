@@ -601,6 +601,7 @@ if container2.button("Show Summary", type="secondary"):
 
   #AgGrid(st.session_state.trips_matched)
   st.subheader("Loop Detail", divider=True)
+  st.write(loopList_copy)
   selected = event.selection.rows
   #filtered_df = loopList_copy.iloc[selected]
   #st.write(filtered_df)
