@@ -66,7 +66,7 @@ def getTripHstory(startDate, endDate):
     response = requests.request("POST", url, headers=headers, data=payload)
     return (response.text)
 
-def data_cleanup():
+def data_cleanup(exclude_trips):
     df_copy = []
     for item in st.session_state.trip_history:
         # Convert 'dispatch' and 'arrival' to datetime
@@ -130,8 +130,9 @@ def trip_matching(
     maxidletime,
     max_duration,
     start_date,
+    exclude_trips,
 ):
-    df_copy = pd.DataFrame(data_cleanup())
+    df_copy = pd.DataFrame(data_cleanup(exclude_trips))
     #st.write(df_copy)
     df_copy["weeknumber"] = (
         df_copy["dispatch"] - pd.to_datetime(start_date)
@@ -559,7 +560,7 @@ st.subheader("Trips Matched", divider=True)
 if container1.button("Find Matching Trips", type="secondary"):
     #st.write("match button is clicked")
     start_date = "10-01-2023"
-    matched_trips = trip_matching(min_distance1,max_distance1,min_savings1,max_distance71,max_idle_time1,max_durations,start_date)
+    matched_trips = trip_matching(min_distance1,max_distance1,min_savings1,max_distance71,max_idle_time1,max_durations,start_date,selected_excluded_trip_ids_selected)
     d = matched_trips.to_json(orient="records")
     #st.dataframe(matched_trips, width=1000, height=400)
     #st.write(matched_trips)
