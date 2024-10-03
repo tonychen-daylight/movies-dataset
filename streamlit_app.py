@@ -67,7 +67,7 @@ def getTripHstory(startDate, endDate):
     return (response.text)
 
 def data_cleanup(exclude_trips):
-    st.write(exclude_trips) 
+    #st.write(exclude_trips) 
     df_copy = []
     for item in st.session_state.trip_history:
         # Convert 'dispatch' and 'arrival' to datetime
@@ -78,7 +78,7 @@ def data_cleanup(exclude_trips):
         item["WeekDay"] = pd.to_datetime(item["dispatch"], errors="coerce").strftime('%A')
         tripNumber = item["trip_number"]
         if tripNumber in exclude_trips:
-          st.write(tripNumber)
+          #st.write(tripNumber)
         else:
           df_copy.append(item)
         
