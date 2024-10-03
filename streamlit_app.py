@@ -136,7 +136,7 @@ def trip_matching(
     exclude_trips,
 ):
     df_copy = pd.DataFrame(data_cleanup(exclude_trips))
-    st.write(df_copy)
+    #st.write(df_copy)
     df_copy["weeknumber"] = (
         df_copy["dispatch"] - pd.to_datetime(start_date)
     ).dt.days // 7
