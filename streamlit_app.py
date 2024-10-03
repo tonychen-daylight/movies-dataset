@@ -77,9 +77,7 @@ def data_cleanup(exclude_trips):
         # Add 'WeekDay' column
         item["WeekDay"] = pd.to_datetime(item["dispatch"], errors="coerce").strftime('%A')
         tripNumber = item["trip_number"]
-        if tripNumber in exclude_trips:
-          #st.write(tripNumber)
-        else:
+        if tripNumber not in exclude_trips:
           df_copy.append(item)
         
     return df_copy
