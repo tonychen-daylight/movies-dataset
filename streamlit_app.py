@@ -67,7 +67,7 @@ def getTripHstory(startDate, endDate):
     return (response.text)
 
 def data_cleanup(exclude_trips):
-    #st.write(exclude_trips) 
+    st.write(exclude_trips) 
     df_copy = []
     for item in st.session_state.trip_history:
         # Convert 'dispatch' and 'arrival' to datetime
