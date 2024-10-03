@@ -619,7 +619,7 @@ if container2.button("Show Summary", type="secondary") or (len(st.session_state.
     for item in data:
      if (item.get("Loop_Name") == loopNameSelected):
        loopDetail.append(item)
-    st.dataframe(loopDetail, width=1000, height=200)
+    st.dataframe(loopDetail, width=1200, height=200)
   
 
 
