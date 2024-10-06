@@ -27,6 +27,7 @@ if st.session_state["authenticated"]:
     authenticate.button_logout()
 else:
     authenticate.button_login()
+st.write( st.session_state["auth_code"])
 
 st.sidebar.header('Step 1:Trip History')
 container = st.sidebar.container(border=True)
