@@ -1,4 +1,5 @@
 import streamlit as st
+import components.authenticate as authenticate
 from st_aggrid import AgGrid
 import pygwalker as pyg
 from pygwalker.api.streamlit import StreamlitRenderer
@@ -17,6 +18,16 @@ st.set_page_config(page_title="Trip Optimization",
 # Trip History
 st.logo("data/dylt-logo-header.png",link="https://www.dylt.com/",
     icon_image="data/logo-sm.svg")
+
+# Check authentication when user lands on the home page.
+authenticate.set_st_state_vars()
+
+# Add login/logout buttons
+if st.session_state["authenticated"]:
+    authenticate.button_logout()
+else:
+    authenticate.button_login()
+
 st.sidebar.header('Step 1:Trip History')
 container = st.sidebar.container(border=True)
 container.date_input("Start Date", datetime.date(2024, 6, 1))
