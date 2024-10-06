@@ -3,4 +3,3 @@ pulp
 requests
 streamlit-aggrid
 pygwalker 
-dotenv
