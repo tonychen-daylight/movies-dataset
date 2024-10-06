@@ -22,12 +22,14 @@ st.logo("data/dylt-logo-header.png",link="https://www.dylt.com/",
 # Check authentication when user lands on the home page.
 authenticate.set_st_state_vars()
 
+st.write( st.session_state["auth_code"])
+
 # Add login/logout buttons
 if st.session_state["authenticated"]:
     authenticate.button_logout()
 else:
     authenticate.button_login()
-st.write( st.session_state["auth_code"])
+
 
 st.sidebar.header('Step 1:Trip History')
 container = st.sidebar.container(border=True)
