@@ -19,7 +19,7 @@ st.logo("data/dylt-logo-header.png",link="https://www.dylt.com/",
     icon_image="data/logo-sm.svg")
 
 # Check authentication when user lands on the home page.
-authenticate.set_st_state_vars()
+#authenticate.set_st_state_vars()
 
 # Add login/logout buttons
 if st.session_state["authenticated"]:
