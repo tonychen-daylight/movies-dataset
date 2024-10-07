@@ -22,16 +22,17 @@ st.logo("data/dylt-logo-header.png",link="https://www.dylt.com/",
 #authenticate.set_st_state_vars()
 
 # Add login/logout buttons
-if st.session_state["authenticated"]:
-    authenticate.button_logout()
-else:
-    authenticate.button_login()
+#if st.session_state["authenticated"]:
+ #   authenticate.button_logout()
+#else:
+  #  authenticate.button_login()
 
 #st.write("auth code")
 #st.write (st.session_state["auth_code"])
 
 if (
-    st.session_state["authenticated"]
+    #st.session_state["authenticated"]
+    3 >1
 ):
     # Trip History
     st.sidebar.header('Step 1:Trip History')
