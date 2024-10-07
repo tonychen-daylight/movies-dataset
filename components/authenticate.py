@@ -16,7 +16,7 @@ load_dotenv()
 COGNITO_DOMAIN = "https://linehaul.auth.us-east-1.amazoncognito.com"
 CLIENT_ID = "58rar1rv48a1k6qagfo20alh3v"
 CLIENT_SECRET = "drrj5o5u4k9h6dm5lpbv9ssnh93u15pehhnh677o5cqlcolded7"
-APP_URI = "https://linehaul-ywtzxt0lns.streamlit.app/"
+APP_URI = "https://linehaul-ywtzxt0lns.streamlit.app"
 
 
 # ------------------------------------
