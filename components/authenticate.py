@@ -14,8 +14,8 @@ load_dotenv()
 #CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
 #APP_URI = os.environ.get("APP_URI")
 COGNITO_DOMAIN = "https://linehaul.auth.us-east-1.amazoncognito.com"
-CLIENT_ID = "5vjkvhsmolij3ol4t76su4lgng"
-CLIENT_SECRET = ""
+CLIENT_ID = "58rar1rv48a1k6qagfo20alh3v"
+CLIENT_SECRET = "drrj5o5u4k9h6dm5lpbv9ssnh93u15pehhnh677o5cqlcolded7"
 APP_URI = "https://linehaul-ywtzxt0lns.streamlit.app/"
 
 
@@ -50,6 +50,7 @@ def get_auth_code():
     auth_query_params = st.query_params.to_dict()
     try:
         auth_code = dict(auth_query_params)["code"]
+       
     except (KeyError, TypeError):
         auth_code = ""
 
@@ -68,6 +69,7 @@ def set_auth_code():
     """
     initialise_st_state_vars()
     auth_code = get_auth_code()
+    
     st.session_state["auth_code"] = auth_code
 
 
@@ -106,11 +108,16 @@ def get_user_tokens(auth_code):
         "redirect_uri": APP_URI,
     }
 
+    #st.write(token_url)
+    #st.write(headers)
+    #st.write(body)
     token_response = requests.post(token_url, headers=headers, data=body)
     try:
+        #st.write(token_response.json())
         access_token = token_response.json()["access_token"]
         id_token = token_response.json()["id_token"]
     except (KeyError, TypeError):
+        #st.write("Get user token error")
         access_token = ""
         id_token = ""
 
@@ -176,7 +183,8 @@ def get_user_cognito_groups(id_token):
         header, payload, signature = id_token.split(".")
         printable_payload = base64.urlsafe_b64decode(pad_base64(payload))
         payload_dict = json.loads(printable_payload)
-        user_cognito_groups = list(dict(payload_dict)["cognito:groups"])
+        #user_cognito_groups = list(dict(payload_dict)["cognito:groups"])
+        user_cognito_groups = []
     else:
         user_cognito_groups = []
     return user_cognito_groups
@@ -194,6 +202,7 @@ def set_st_state_vars():
     initialise_st_state_vars()
     auth_code = get_auth_code()
     access_token, id_token = get_user_tokens(auth_code)
+    #st.write(access_token)
     user_cognito_groups = get_user_cognito_groups(id_token)
 
     if access_token != "":
