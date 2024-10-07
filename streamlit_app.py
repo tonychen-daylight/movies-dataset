@@ -15,8 +15,8 @@ st.set_page_config(page_title="Trip Optimization",
                    layout="wide", 
                    initial_sidebar_state="expanded")
 
-st.logo("dylt-logo-header.png",link="https://www.dylt.com/",
-    icon_image="logo-sm.svg")
+st.logo("data/dylt-logo-header.png",link="https://www.dylt.com/",
+    icon_image="data/logo-sm.svg")
 
 # Check authentication when user lands on the home page.
 authenticate.set_st_state_vars()
