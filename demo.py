@@ -1,8 +1,8 @@
 import streamlit as st
 import components.authenticate as authenticate
-from st_aggrid import AgGrid
-import pygwalker as pyg
-from pygwalker.api.streamlit import StreamlitRenderer
+#from st_aggrid import AgGrid
+#import pygwalker as pyg
+#from pygwalker.api.streamlit import StreamlitRenderer
 import pandas as pd
 import pulp
 import datetime
