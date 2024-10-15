@@ -36,8 +36,8 @@ if (
     # Trip History
     st.sidebar.header('Step 1:Trip History')
     container = st.sidebar.container(border=True)
-    container.date_input("Start Date", datetime.date(2024, 6, 1))
-    container.date_input("End Date", datetime.datetime.now())
+    startDate = container.date_input("Start Date", datetime.date(2024, 6, 1))
+    endDate = container.date_input("End Date", datetime.datetime.now())
     #container.button("Pull Strip", type="secondary")
   
     # Trip Matching
@@ -553,7 +553,7 @@ if (
     if container.button("Get Trip History", type="secondary"):
         token =  getToken()
         #st.write(token)
-        url = "https://dev-api.dylt.com/myDaylight/v1/shipments/tripHistory/06-01-2024"
+        url = "https://dev-api.dylt.com/myDaylight/v1/shipments/tripHistory/" + str(startDate) + "/" + str(endDate)
         payload = {}
         headers = {
         'Authorization': 'Bearer ' + token
