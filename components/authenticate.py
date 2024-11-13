@@ -13,10 +13,18 @@ load_dotenv()
 #CLIENT_ID = os.environ.get("CLIENT_ID")
 #CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
 #APP_URI = os.environ.get("APP_URI")
-COGNITO_DOMAIN = "https://linehaul.auth.us-east-1.amazoncognito.com"
-CLIENT_ID = "58rar1rv48a1k6qagfo20alh3v"
-CLIENT_SECRET = "drrj5o5u4k9h6dm5lpbv9ssnh93u15pehhnh677o5cqlcolded7"
-APP_URI = "https://linoptimization.dev.dylt.com"
+
+#DEV
+#COGNITO_DOMAIN = "https://linehaul.auth.us-east-1.amazoncognito.com"
+#CLIENT_ID = "58rar1rv48a1k6qagfo20alh3v"
+#CLIENT_SECRET = "drrj5o5u4k9h6dm5lpbv9ssnh93u15pehhnh677o5cqlcolded7"
+#APP_URI = "https://linoptimization.dev.dylt.com"
+
+#PROD
+COGNITO_DOMAIN = "https://linehaul.auth.us-west-1.amazoncognito.com"
+CLIENT_ID = "142eoa8rrr85j4c5fb5o0mmrnm"
+CLIENT_SECRET = "1501vhdputq7dpmh14sber4lnc1k4ivliatboofks3np1q5ntv4a"
+APP_URI = "https://linoptimization.dylt.com"
 
 
 # ------------------------------------
