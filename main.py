@@ -66,7 +66,7 @@ if (
     
     def trip_history(start_date, end_date):
         conn = redshift_connector.connect(
-            host = 'rs.dev.dylt.com',
+            host = 'rs.dylt.com',
             database = 'dyltdw',
             port = 5439,
             user = 'svc_analytics',
