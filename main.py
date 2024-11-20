@@ -70,7 +70,7 @@ if (
             database = 'dyltdw',
             port = 5439,
             user = 'svc_analytics',
-            password = 'ytC8NBCQ'
+            password = 'ggg'
         )
         cursor = conn.cursor()
         sql = f"""select vls.trip_number, 
