@@ -85,17 +85,17 @@ if (
                 vls.name as carrier,
                 sched.ROUTE_DESCRIPTION,
                 round((vls.cost / vls.distance)::decimal(10, 4), 2) as cpm
-            from  dylt_imp.vendor_load_summary vls 
-                left join dylt_imp.tripstat ts on vls.trip_number = ts.trip_number and ts.status = 'DISP'
-                left join dylt_imp.tripstat ts1 on vls.trip_number = ts1.trip_number and ts1.status = 'ARRTERM'
-                left join dylt_imp.trip trip on vls.trip_number = trip.trip_number
-                LEFT JOIN dylt_imp.TRIP_SCHEDULES sched ON sched.SCHEDULE_ID = trip.SCHEDULE_ID
+            from  dw_dylt_imp.vendor_load_summary vls 
+                left join dw_dylt_imp.tripstat ts on vls.trip_number = ts.trip_number and ts.status = 'DISP'
+                left join dw_dylt_imp.tripstat ts1 on vls.trip_number = ts1.trip_number and ts1.status = 'ARRTERM'
+                left join dw_dylt_imp.trip trip on vls.trip_number = trip.trip_number
+                LEFT JOIN dw_dylt_imp.TRIP_SCHEDULES sched ON sched.SCHEDULE_ID = trip.SCHEDULE_ID
             where vls.status = 'Completed' 
                 and ts.time_changed between '{start_date}' and '{end_date}'
-                and vls.LOAD_SUMMARY_ID = (select max(load_summary_id) from dylt_imp.vendor_load_summary vls2 where vls2.TRIP_NUMBER = vls.TRIP_NUMBER)
+                and vls.LOAD_SUMMARY_ID = (select max(load_summary_id) from dw_dylt_imp.vendor_load_summary vls2 where vls2.TRIP_NUMBER = vls.TRIP_NUMBER)
                 and equipment not like '%Shut%'
-                and ts.TIME_CHANGED = (select min(ts2.time_changed) from dylt_imp.tripstat ts2 where ts2.status = 'DISP' and ts2.trip_number = ts.trip_number)
-                and ts1.TIME_CHANGED = (select min(ts2.time_changed) from dylt_imp.tripstat ts2 where ts2.status = 'ARRTERM' and ts2.trip_number = ts1.trip_number)
+                and ts.TIME_CHANGED = (select min(ts2.time_changed) from dw_dylt_imp.tripstat ts2 where ts2.status = 'DISP' and ts2.trip_number = ts.trip_number)
+                and ts1.TIME_CHANGED = (select min(ts2.time_changed) from dw_dylt_imp.tripstat ts2 where ts2.status = 'ARRTERM' and ts2.trip_number = ts1.trip_number)
                 order by vls.trip_number"""
 
         cursor.execute(sql)
